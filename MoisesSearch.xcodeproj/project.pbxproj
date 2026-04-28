@@ -1,0 +1,990 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9113AF5E2FA129A000001309 /* MoisesSearch Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9113AF5D2FA129A000001309 /* MoisesSearch Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9113AF482FA129A000001309 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9113AF322FA1299E00001309 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9113AF392FA1299E00001309;
+			remoteInfo = MoisesSearch;
+		};
+		9113AF522FA129A000001309 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9113AF322FA1299E00001309 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9113AF392FA1299E00001309;
+			remoteInfo = MoisesSearch;
+		};
+		9113AF5F2FA129A000001309 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9113AF322FA1299E00001309 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9113AF5C2FA129A000001309;
+			remoteInfo = "MoisesSearch Watch App";
+		};
+		9113AF6D2FA129A100001309 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9113AF322FA1299E00001309 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9113AF5C2FA129A000001309;
+			remoteInfo = "MoisesSearch Watch App";
+		};
+		9113AF772FA129A100001309 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9113AF322FA1299E00001309 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9113AF5C2FA129A000001309;
+			remoteInfo = "MoisesSearch Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9113AF832FA129A100001309 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				9113AF5E2FA129A000001309 /* MoisesSearch Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9113AF3A2FA1299E00001309 /* MoisesSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoisesSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9113AF472FA129A000001309 /* MoisesSearchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoisesSearchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9113AF512FA129A000001309 /* MoisesSearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoisesSearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9113AF5D2FA129A000001309 /* MoisesSearch Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MoisesSearch Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9113AF6C2FA129A100001309 /* MoisesSearch Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MoisesSearch Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9113AF762FA129A100001309 /* MoisesSearch Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MoisesSearch Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		9113AF3C2FA1299E00001309 /* MoisesSearch */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MoisesSearch;
+			sourceTree = "<group>";
+		};
+		9113AF4A2FA129A000001309 /* MoisesSearchTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MoisesSearchTests;
+			sourceTree = "<group>";
+		};
+		9113AF542FA129A000001309 /* MoisesSearchUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MoisesSearchUITests;
+			sourceTree = "<group>";
+		};
+		9113AF612FA129A000001309 /* MoisesSearch Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "MoisesSearch Watch App";
+			sourceTree = "<group>";
+		};
+		9113AF6F2FA129A100001309 /* MoisesSearch Watch AppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "MoisesSearch Watch AppTests";
+			sourceTree = "<group>";
+		};
+		9113AF792FA129A100001309 /* MoisesSearch Watch AppUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "MoisesSearch Watch AppUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9113AF372FA1299E00001309 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9113AF442FA129A000001309 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9113AF4E2FA129A000001309 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9113AF5A2FA129A000001309 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9113AF692FA129A100001309 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9113AF732FA129A100001309 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9113AF312FA1299E00001309 = {
+			isa = PBXGroup;
+			children = (
+				9113AF3C2FA1299E00001309 /* MoisesSearch */,
+				9113AF4A2FA129A000001309 /* MoisesSearchTests */,
+				9113AF542FA129A000001309 /* MoisesSearchUITests */,
+				9113AF612FA129A000001309 /* MoisesSearch Watch App */,
+				9113AF6F2FA129A100001309 /* MoisesSearch Watch AppTests */,
+				9113AF792FA129A100001309 /* MoisesSearch Watch AppUITests */,
+				9113AF3B2FA1299E00001309 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9113AF3B2FA1299E00001309 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9113AF3A2FA1299E00001309 /* MoisesSearch.app */,
+				9113AF472FA129A000001309 /* MoisesSearchTests.xctest */,
+				9113AF512FA129A000001309 /* MoisesSearchUITests.xctest */,
+				9113AF5D2FA129A000001309 /* MoisesSearch Watch App.app */,
+				9113AF6C2FA129A100001309 /* MoisesSearch Watch AppTests.xctest */,
+				9113AF762FA129A100001309 /* MoisesSearch Watch AppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9113AF392FA1299E00001309 /* MoisesSearch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9113AF842FA129A100001309 /* Build configuration list for PBXNativeTarget "MoisesSearch" */;
+			buildPhases = (
+				9113AF362FA1299E00001309 /* Sources */,
+				9113AF372FA1299E00001309 /* Frameworks */,
+				9113AF382FA1299E00001309 /* Resources */,
+				9113AF832FA129A100001309 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9113AF602FA129A000001309 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				9113AF3C2FA1299E00001309 /* MoisesSearch */,
+			);
+			name = MoisesSearch;
+			packageProductDependencies = (
+			);
+			productName = MoisesSearch;
+			productReference = 9113AF3A2FA1299E00001309 /* MoisesSearch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9113AF462FA129A000001309 /* MoisesSearchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9113AF872FA129A100001309 /* Build configuration list for PBXNativeTarget "MoisesSearchTests" */;
+			buildPhases = (
+				9113AF432FA129A000001309 /* Sources */,
+				9113AF442FA129A000001309 /* Frameworks */,
+				9113AF452FA129A000001309 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9113AF492FA129A000001309 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				9113AF4A2FA129A000001309 /* MoisesSearchTests */,
+			);
+			name = MoisesSearchTests;
+			packageProductDependencies = (
+			);
+			productName = MoisesSearchTests;
+			productReference = 9113AF472FA129A000001309 /* MoisesSearchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9113AF502FA129A000001309 /* MoisesSearchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9113AF8A2FA129A100001309 /* Build configuration list for PBXNativeTarget "MoisesSearchUITests" */;
+			buildPhases = (
+				9113AF4D2FA129A000001309 /* Sources */,
+				9113AF4E2FA129A000001309 /* Frameworks */,
+				9113AF4F2FA129A000001309 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9113AF532FA129A000001309 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				9113AF542FA129A000001309 /* MoisesSearchUITests */,
+			);
+			name = MoisesSearchUITests;
+			packageProductDependencies = (
+			);
+			productName = MoisesSearchUITests;
+			productReference = 9113AF512FA129A000001309 /* MoisesSearchUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		9113AF5C2FA129A000001309 /* MoisesSearch Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9113AF802FA129A100001309 /* Build configuration list for PBXNativeTarget "MoisesSearch Watch App" */;
+			buildPhases = (
+				9113AF592FA129A000001309 /* Sources */,
+				9113AF5A2FA129A000001309 /* Frameworks */,
+				9113AF5B2FA129A000001309 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				9113AF612FA129A000001309 /* MoisesSearch Watch App */,
+			);
+			name = "MoisesSearch Watch App";
+			packageProductDependencies = (
+			);
+			productName = "MoisesSearch Watch App";
+			productReference = 9113AF5D2FA129A000001309 /* MoisesSearch Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9113AF6B2FA129A100001309 /* MoisesSearch Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9113AF8D2FA129A100001309 /* Build configuration list for PBXNativeTarget "MoisesSearch Watch AppTests" */;
+			buildPhases = (
+				9113AF682FA129A100001309 /* Sources */,
+				9113AF692FA129A100001309 /* Frameworks */,
+				9113AF6A2FA129A100001309 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9113AF6E2FA129A100001309 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				9113AF6F2FA129A100001309 /* MoisesSearch Watch AppTests */,
+			);
+			name = "MoisesSearch Watch AppTests";
+			packageProductDependencies = (
+			);
+			productName = "MoisesSearch Watch AppTests";
+			productReference = 9113AF6C2FA129A100001309 /* MoisesSearch Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9113AF752FA129A100001309 /* MoisesSearch Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9113AF902FA129A100001309 /* Build configuration list for PBXNativeTarget "MoisesSearch Watch AppUITests" */;
+			buildPhases = (
+				9113AF722FA129A100001309 /* Sources */,
+				9113AF732FA129A100001309 /* Frameworks */,
+				9113AF742FA129A100001309 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9113AF782FA129A100001309 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				9113AF792FA129A100001309 /* MoisesSearch Watch AppUITests */,
+			);
+			name = "MoisesSearch Watch AppUITests";
+			packageProductDependencies = (
+			);
+			productName = "MoisesSearch Watch AppUITests";
+			productReference = 9113AF762FA129A100001309 /* MoisesSearch Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9113AF322FA1299E00001309 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2640;
+				LastUpgradeCheck = 2640;
+				TargetAttributes = {
+					9113AF392FA1299E00001309 = {
+						CreatedOnToolsVersion = 26.4.1;
+					};
+					9113AF462FA129A000001309 = {
+						CreatedOnToolsVersion = 26.4.1;
+						TestTargetID = 9113AF392FA1299E00001309;
+					};
+					9113AF502FA129A000001309 = {
+						CreatedOnToolsVersion = 26.4.1;
+						TestTargetID = 9113AF392FA1299E00001309;
+					};
+					9113AF5C2FA129A000001309 = {
+						CreatedOnToolsVersion = 26.4.1;
+					};
+					9113AF6B2FA129A100001309 = {
+						CreatedOnToolsVersion = 26.4.1;
+						TestTargetID = 9113AF5C2FA129A000001309;
+					};
+					9113AF752FA129A100001309 = {
+						CreatedOnToolsVersion = 26.4.1;
+						TestTargetID = 9113AF5C2FA129A000001309;
+					};
+				};
+			};
+			buildConfigurationList = 9113AF352FA1299E00001309 /* Build configuration list for PBXProject "MoisesSearch" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9113AF312FA1299E00001309;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 9113AF3B2FA1299E00001309 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9113AF392FA1299E00001309 /* MoisesSearch */,
+				9113AF462FA129A000001309 /* MoisesSearchTests */,
+				9113AF502FA129A000001309 /* MoisesSearchUITests */,
+				9113AF5C2FA129A000001309 /* MoisesSearch Watch App */,
+				9113AF6B2FA129A100001309 /* MoisesSearch Watch AppTests */,
+				9113AF752FA129A100001309 /* MoisesSearch Watch AppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9113AF382FA1299E00001309 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9113AF452FA129A000001309 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9113AF4F2FA129A000001309 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9113AF5B2FA129A000001309 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9113AF6A2FA129A100001309 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9113AF742FA129A100001309 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9113AF362FA1299E00001309 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9113AF432FA129A000001309 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9113AF4D2FA129A000001309 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9113AF592FA129A000001309 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9113AF682FA129A100001309 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9113AF722FA129A100001309 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9113AF492FA129A000001309 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9113AF392FA1299E00001309 /* MoisesSearch */;
+			targetProxy = 9113AF482FA129A000001309 /* PBXContainerItemProxy */;
+		};
+		9113AF532FA129A000001309 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9113AF392FA1299E00001309 /* MoisesSearch */;
+			targetProxy = 9113AF522FA129A000001309 /* PBXContainerItemProxy */;
+		};
+		9113AF602FA129A000001309 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9113AF5C2FA129A000001309 /* MoisesSearch Watch App */;
+			targetProxy = 9113AF5F2FA129A000001309 /* PBXContainerItemProxy */;
+		};
+		9113AF6E2FA129A100001309 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9113AF5C2FA129A000001309 /* MoisesSearch Watch App */;
+			targetProxy = 9113AF6D2FA129A100001309 /* PBXContainerItemProxy */;
+		};
+		9113AF782FA129A100001309 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9113AF5C2FA129A000001309 /* MoisesSearch Watch App */;
+			targetProxy = 9113AF772FA129A100001309 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		9113AF7E2FA129A100001309 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9113AF7F2FA129A100001309 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		9113AF812FA129A100001309 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MoisesSearch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = gugapc.MoisesSearch;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gugapc.MoisesSearch.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.4;
+			};
+			name = Debug;
+		};
+		9113AF822FA129A100001309 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MoisesSearch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = gugapc.MoisesSearch;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gugapc.MoisesSearch.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 26.4;
+			};
+			name = Release;
+		};
+		9113AF852FA129A100001309 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MoisesSearch;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gugapc.MoisesSearch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9113AF862FA129A100001309 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MoisesSearch;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gugapc.MoisesSearch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9113AF882FA129A100001309 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gugapc.MoisesSearchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoisesSearch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoisesSearch";
+			};
+			name = Debug;
+		};
+		9113AF892FA129A100001309 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gugapc.MoisesSearchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoisesSearch.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoisesSearch";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9113AF8B2FA129A100001309 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gugapc.MoisesSearchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MoisesSearch;
+			};
+			name = Debug;
+		};
+		9113AF8C2FA129A100001309 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gugapc.MoisesSearchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MoisesSearch;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9113AF8E2FA129A100001309 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "gugapc.MoisesSearch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoisesSearch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoisesSearch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 26.4;
+			};
+			name = Debug;
+		};
+		9113AF8F2FA129A100001309 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "gugapc.MoisesSearch-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoisesSearch Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MoisesSearch Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 26.4;
+			};
+			name = Release;
+		};
+		9113AF912FA129A100001309 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "gugapc.MoisesSearch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "MoisesSearch Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 26.4;
+			};
+			name = Debug;
+		};
+		9113AF922FA129A100001309 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "gugapc.MoisesSearch-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "MoisesSearch Watch App";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 26.4;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9113AF352FA1299E00001309 /* Build configuration list for PBXProject "MoisesSearch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9113AF7E2FA129A100001309 /* Debug */,
+				9113AF7F2FA129A100001309 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9113AF802FA129A100001309 /* Build configuration list for PBXNativeTarget "MoisesSearch Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9113AF812FA129A100001309 /* Debug */,
+				9113AF822FA129A100001309 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9113AF842FA129A100001309 /* Build configuration list for PBXNativeTarget "MoisesSearch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9113AF852FA129A100001309 /* Debug */,
+				9113AF862FA129A100001309 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9113AF872FA129A100001309 /* Build configuration list for PBXNativeTarget "MoisesSearchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9113AF882FA129A100001309 /* Debug */,
+				9113AF892FA129A100001309 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9113AF8A2FA129A100001309 /* Build configuration list for PBXNativeTarget "MoisesSearchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9113AF8B2FA129A100001309 /* Debug */,
+				9113AF8C2FA129A100001309 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9113AF8D2FA129A100001309 /* Build configuration list for PBXNativeTarget "MoisesSearch Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9113AF8E2FA129A100001309 /* Debug */,
+				9113AF8F2FA129A100001309 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9113AF902FA129A100001309 /* Build configuration list for PBXNativeTarget "MoisesSearch Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9113AF912FA129A100001309 /* Debug */,
+				9113AF922FA129A100001309 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9113AF322FA1299E00001309 /* Project object */;
+}
