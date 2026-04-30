@@ -33,6 +33,7 @@ struct SearchBarField: View {
                         .foregroundStyle(.secondary)
                 }
                 .accessibilityLabel(String(localized: "Clear search"))
+                .accessibilityIdentifier("clear_search_button")
             }
         }
         .padding(.horizontal, 16)
@@ -41,6 +42,10 @@ struct SearchBarField: View {
         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         .opacity(opacity)
     }
+}
+
+#Preview {
+    SearchBarFieldPreviewHost()
 }
 
 private struct SearchBarFieldPreviewHost: View {
