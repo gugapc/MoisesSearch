@@ -10,11 +10,6 @@ import SwiftUI
 struct CollapsingHeaderView<Content: View>: View {
     private let scrollTopID = "collapsingScrollTop"
 
-    /// Scroll distance (pt) over which the search fades from opaque to hidden, after `fadeLeadIn`.
-    private let collapseDistance: CGFloat = 65
-    /// Scroll distance (pt) before the fade begins (search stays fully opaque until then).
-    private let fadeLeadIn: CGFloat = 50
-
     private let navigationTitle: String
     private let searchPlaceholder: String
 
@@ -35,17 +30,16 @@ struct CollapsingHeaderView<Content: View>: View {
         self.content = content
     }
 
-    /// 0 = fully expanded search, 1 = past collapse threshold (toolbar / compact state).
     private var collapseProgress: CGFloat {
-        min(1, max(0, (scrollDistance - fadeLeadIn) / max(collapseDistance, 1)))
+        CollapsingHeaderLayout.collapseProgress(scrollDistance: scrollDistance)
     }
 
     private var inlineSearchOpacity: CGFloat {
-        1 - collapseProgress
+        CollapsingHeaderLayout.inlineSearchOpacity(scrollDistance: scrollDistance)
     }
 
     private var isCollapsed: Bool {
-        collapseProgress >= 1
+        CollapsingHeaderLayout.isCollapsed(scrollDistance: scrollDistance)
     }
 
     var body: some View {
@@ -71,7 +65,7 @@ struct CollapsingHeaderView<Content: View>: View {
             .animation(.easeInOut(duration: 0.2), value: isCollapsed)
         }
     }
-    
+
     @ToolbarContentBuilder
     private func toolbarView(with proxy: ScrollViewProxy) -> some ToolbarContent {
         ToolbarItem(placement: .topBarLeading) {
@@ -97,7 +91,7 @@ struct CollapsingHeaderView<Content: View>: View {
 private struct CollapsingHeaderViewPreviewHost: View {
     @State private var searchText: String = ""
     private let listNames = Array(1...30).map { "Item \($0)" }
-    
+
     var body: some View {
         NavigationStack {
             CollapsingHeaderView(searchText: $searchText, navigationTitle: "Test", searchPlaceholder: "Search") {
