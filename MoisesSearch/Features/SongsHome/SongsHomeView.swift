@@ -8,26 +8,40 @@
 import SwiftUI
 
 struct SongsHomeView: View {
-    @State private var searchText = ""
-
+    @Bindable var viewModel: SongsHomeViewModel
+    
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $viewModel.navigationPath) {
             CollapsingHeaderView(
-                searchText: $searchText,
+                searchText: $viewModel.searchText,
                 navigationTitle: String(localized: "Songs")
             ) {
-                ForEach(0 ..< 30, id: \.self) { index in
-                    Text("Post \(index)")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding()
-                        .background(Color.gray.opacity(0.12))
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                if viewModel.displayedTracks.isEmpty {
+                    EmptySearchPlaceholderView(searchText: viewModel.searchText)
+                } else {
+                    ForEach(Array(viewModel.displayedTracks.enumerated()), id: \.element.id) { index, item in
+                        SongRowView(
+                            item: item,
+                            onTapRow: { viewModel.playTrack(at: index) },
+                            onMore: { viewModel.onMoreTapped(for: item) }
+                        )
+                    }
                 }
             }
+            .navigationDestination(for: AppRoute.self) { route in
+                switch route {
+                case .player:
+                    PlayerView(playbackQueue: viewModel.playbackQueue)
+                }
+            }
+        }
+        .onChange(of: viewModel.searchText) { _, _ in
+            viewModel.applySearchQuery()
         }
     }
 }
 
 #Preview("Songs home") {
-    SongsHomeView()
+    @Previewable @State var viewModel = SongsHomeViewModel()
+    SongsHomeView(viewModel: viewModel)
 }
