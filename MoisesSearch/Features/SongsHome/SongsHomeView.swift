@@ -9,14 +9,23 @@ import SwiftUI
 
 struct SongsHomeView: View {
     @Bindable var viewModel: SongsHomeViewModel
-    
+
     var body: some View {
         NavigationStack(path: $viewModel.navigationPath) {
             CollapsingHeaderView(
                 searchText: $viewModel.searchText,
                 navigationTitle: String(localized: "Songs")
             ) {
-                if viewModel.displayedTracks.isEmpty {
+                if let message = viewModel.searchErrorMessage, viewModel.isRemoteSearchActive {
+                    SearchErrorView(
+                        message: message,
+                        onRetry: viewModel.retrySearch
+                    )
+                } else if viewModel.isSearchLoading, viewModel.displayedTracks.isEmpty, viewModel.isRemoteSearchActive {
+                    ProgressView()
+                        .frame(maxWidth: .infinity)
+                        .padding(.top, 40)
+                } else if viewModel.displayedTracks.isEmpty {
                     EmptySearchPlaceholderView(searchText: viewModel.searchText)
                 } else {
                     ForEach(Array(viewModel.displayedTracks.enumerated()), id: \.element.id) { index, item in
@@ -25,6 +34,15 @@ struct SongsHomeView: View {
                             onTapRow: { viewModel.playTrack(at: index) },
                             onMore: { viewModel.onMoreTapped(for: item) }
                         )
+                        .onAppear {
+                            viewModel.loadMoreSearchResultsIfNeeded(currentItem: item)
+                        }
+                    }
+
+                    if viewModel.isSearchLoading, !viewModel.displayedTracks.isEmpty, viewModel.isRemoteSearchActive {
+                        ProgressView()
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 16)
                     }
                 }
             }
@@ -36,7 +54,7 @@ struct SongsHomeView: View {
             }
         }
         .onChange(of: viewModel.searchText) { _, _ in
-            viewModel.applySearchQuery()
+            viewModel.scheduleDebouncedSearch()
         }
     }
 }
