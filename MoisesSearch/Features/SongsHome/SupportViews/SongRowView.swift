@@ -33,12 +33,40 @@ struct SongRowView: View {
     }
     
     private var songIcon: some View {
+        Group {
+            if let url = item.artworkURL {
+                AsyncImage(url: url) { phase in
+                    switch phase {
+                    case .empty:
+                        artworkPlaceholder(showProgress: true)
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .scaledToFill()
+                    case .failure:
+                        artworkPlaceholder(showProgress: false)
+                    @unknown default:
+                        artworkPlaceholder(showProgress: false)
+                    }
+                }
+            } else {
+                artworkPlaceholder(showProgress: false)
+            }
+        }
+        .frame(width: 48, height: 48)
+        .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+    }
+
+    private func artworkPlaceholder(showProgress: Bool) -> some View {
         RoundedRectangle(cornerRadius: 6, style: .continuous)
             .fill(Color.primary.opacity(0.12))
-            .frame(width: 48, height: 48)
             .overlay {
-                Image(systemName: "music.note")
-                    .foregroundStyle(.secondary)
+                if showProgress {
+                    ProgressView()
+                } else {
+                    Image(systemName: "music.note")
+                        .foregroundStyle(.secondary)
+                }
             }
     }
     
