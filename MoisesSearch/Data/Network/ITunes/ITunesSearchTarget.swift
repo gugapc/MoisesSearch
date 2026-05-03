@@ -8,7 +8,7 @@
 import Foundation
 
 enum ITunesSearchTarget: TargetType {
-    case songSearch(term: String, limit: Int, offset: Int)
+    case songSearch(term: String, limit: Int)
     case albumLookup(collectionId: Int)
 
     var path: String {
@@ -22,13 +22,12 @@ enum ITunesSearchTarget: TargetType {
 
     var queryItems: [URLQueryItem]? {
         switch self {
-        case let .songSearch(term, limit, offset):
+        case let .songSearch(term, limit):
             [
                 URLQueryItem(name: "term", value: term),
                 URLQueryItem(name: "media", value: "music"),
                 URLQueryItem(name: "entity", value: "song"),
                 URLQueryItem(name: "limit", value: String(limit)),
-                URLQueryItem(name: "offset", value: String(offset)),
             ]
         case let .albumLookup(collectionId):
             [

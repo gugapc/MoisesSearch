@@ -34,15 +34,6 @@ struct SongsHomeView: View {
                             onTapRow: { viewModel.playTrack(at: index) },
                             onMore: { viewModel.onMoreTapped(for: item) }
                         )
-                        .onAppear {
-                            viewModel.loadMoreSearchResultsIfNeeded(currentItem: item)
-                        }
-                    }
-
-                    if viewModel.isSearchLoading, !viewModel.displayedTracks.isEmpty, viewModel.isRemoteSearchActive {
-                        ProgressView()
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
                     }
                 }
             }

@@ -17,8 +17,8 @@ struct EmptySearchPlaceholderViewSnapshotTests {
     func emptySearchPlaceholder_whenSearchQueryIsEmpty_rendersCorrectly(size: DynamicTypeSize, scheme: ColorScheme) {
         let sut = createSut(searchText: "", size: size, scheme: scheme)
 
-        let schemeName = scheme == .dark ? "dark" : "light"
-        let sizeName = sizeName(for: size)
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
+        let sizeName = SnapshotTestNaming.sizeName(for: size)
 
         assertSnapshot(of: sut, as: .image, named: "\(schemeName)_\(sizeName)")
     }
@@ -27,8 +27,8 @@ struct EmptySearchPlaceholderViewSnapshotTests {
     func emptySearchPlaceholder_whenSearchQueryIsNotEmpty_rendersCorrectly(size: DynamicTypeSize, scheme: ColorScheme) {
         let sut = createSut(searchText: "Muse", size: size, scheme: scheme)
 
-        let schemeName = scheme == .dark ? "dark" : "light"
-        let sizeName = sizeName(for: size)
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
+        let sizeName = SnapshotTestNaming.sizeName(for: size)
 
         assertSnapshot(of: sut, as: .image, named: "\(schemeName)_\(sizeName)")
     }
@@ -42,7 +42,7 @@ struct EmptySearchPlaceholderViewSnapshotTests {
             layoutDirection: .rightToLeft
         )
 
-        let schemeName = scheme == .dark ? "dark" : "light"
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
         let queryName = query.isEmpty ? "empty" : "non-empty"
 
         assertSnapshot(of: sut, as: .image, named: "rtl_\(schemeName)_\(queryName)")
@@ -63,18 +63,5 @@ extension EmptySearchPlaceholderViewSnapshotTests {
             .environment(\.layoutDirection, layoutDirection)
             .background(background)
             .frame(width: 390)
-    }
-
-    fileprivate func sizeName(for size: DynamicTypeSize) -> String {
-        switch size {
-        case .xSmall:
-            "xSmall"
-        case .medium:
-            "medium"
-        case .xxxLarge:
-            "xxxLarge"
-        default:
-            "unsupported"
-        }
     }
 }

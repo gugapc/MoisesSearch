@@ -12,7 +12,7 @@ struct MockSongSearchRepository: SongSearchRepository {
     var page: SongSearchPage
     var error: (any Error)?
 
-    func searchSongs(query: String, limit: Int, offset: Int) async throws -> SongSearchPage {
+    func searchSongs(query: String, limit: Int) async throws -> SongSearchPage {
         if let error {
             throw error
         }

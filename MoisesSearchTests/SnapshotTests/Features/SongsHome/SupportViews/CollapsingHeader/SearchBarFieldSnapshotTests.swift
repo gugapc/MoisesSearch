@@ -17,8 +17,8 @@ struct SearchBarFieldSnapshotTests {
     func searchBarField_whenTextIsEmpty_rendersCorrectly(size: DynamicTypeSize, scheme: ColorScheme) {
         let sut = createSut(text: "", size: size, scheme: scheme)
 
-        let schemeName = scheme == .dark ? "dark" : "light"
-        let sizeName = sizeName(for: size)
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
+        let sizeName = SnapshotTestNaming.sizeName(for: size)
 
         assertSnapshot(of: sut, as: .image, named: "\(schemeName)_\(sizeName)")
     }
@@ -27,8 +27,8 @@ struct SearchBarFieldSnapshotTests {
     func searchBarField_whenTextIsNotEmpty_rendersCorrectly(size: DynamicTypeSize, scheme: ColorScheme) {
         let sut = createSut(text: "draft", size: size, scheme: scheme)
 
-        let schemeName = scheme == .dark ? "dark" : "light"
-        let sizeName = sizeName(for: size)
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
+        let sizeName = SnapshotTestNaming.sizeName(for: size)
 
         assertSnapshot(of: sut, as: .image, named: "\(schemeName)_\(sizeName)")
     }
@@ -42,7 +42,7 @@ struct SearchBarFieldSnapshotTests {
             layoutDirection: .rightToLeft
         )
 
-        let schemeName = scheme == .dark ? "dark" : "light"
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
         let textName = text.isEmpty ? "empty" : text
 
         assertSnapshot(of: sut, as: .image, named: "rtl_\(schemeName)_\(textName)")
@@ -66,18 +66,5 @@ extension SearchBarFieldSnapshotTests {
             .background(background)
             .frame(width: 300)
 
-    }
-    
-    private func sizeName(for size: DynamicTypeSize) -> String {
-        switch size {
-        case .xSmall:
-            "xSmall"
-        case .medium:
-            "medium"
-        case .xxxLarge:
-            "xxxLarge"
-        default:
-            "unsupported"
-        }
     }
 }

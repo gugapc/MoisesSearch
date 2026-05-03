@@ -13,56 +13,86 @@ import Testing
 @MainActor
 struct SongsHomeViewSnapshotTests {
 
+    // MARK: - Default catalog (local stub)
+
     @Test(arguments: [DynamicTypeSize.xSmall, DynamicTypeSize.medium, DynamicTypeSize.xxxLarge], [ColorScheme.dark, ColorScheme.light])
     func songsHomeView_whenDefaultCatalog_rendersCorrectly(size: DynamicTypeSize, scheme: ColorScheme) {
-        let viewModel = SongsHomeViewModel()
-        let sut = createSongsHomeSut(viewModel: viewModel, size: size, scheme: scheme)
+        let viewModel = makeViewModel(repository: emptyRemotePageRepository())
+        let sut = songsHomeView(viewModel: viewModel, size: size, scheme: scheme)
 
-        let schemeName = scheme == .dark ? "dark" : "light"
-        let sizeName = sizeName(for: size)
-
-        assertSnapshot(
-            of: sut,
-            as: .image(layout: .fixed(width: 390, height: 900)),
-            named: "\(schemeName)_\(sizeName)"
+        assertSongsHomeSnapshot(
+            sut,
+            named: "\(SnapshotTestNaming.schemeName(scheme))_\(SnapshotTestNaming.sizeName(for: size))",
+            testName: #function
         )
     }
+
+    // MARK: - Search returns no matches
 
     @Test(arguments: [ColorScheme.dark, ColorScheme.light])
-    func songsHomeView_whenSearchHasNoMatches_rendersCorrectly(scheme: ColorScheme) {
-        let viewModel = SongsHomeViewModel()
-        viewModel.searchText = "∂ⁿø-matches-xyz"
-        viewModel.applySearchQuery()
+    func songsHomeView_whenSearchHasNoMatches_rendersCorrectly(scheme: ColorScheme) async {
+        let viewModel = makeViewModel(repository: emptyRemotePageRepository())
 
-        let sut = createSongsHomeSut(viewModel: viewModel, size: .medium, scheme: scheme)
-        let schemeName = scheme == .dark ? "dark" : "light"
+        await applyRemoteSearch(viewModel, query: "∂ⁿø-matches-xyz")
+        assertRemoteSearchSettledWithoutError(viewModel)
 
-        assertSnapshot(
-            of: sut,
-            as: .image(layout: .fixed(width: 390, height: 900)),
-            named: "no-results_\(schemeName)"
-        )
+        let sut = songsHomeView(viewModel: viewModel, size: .medium, scheme: scheme)
+        assertSongsHomeSnapshot(sut, named: "no-results_\(SnapshotTestNaming.schemeName(scheme))", testName: #function)
     }
+
+    // MARK: - Search filters to sample results
 
     @Test(arguments: [ColorScheme.dark, ColorScheme.light])
-    func songsHomeView_whenSearchFiltersResults_rendersCorrectly(scheme: ColorScheme) {
-        let viewModel = SongsHomeViewModel()
-        viewModel.searchText = "Daft"
-        viewModel.applySearchQuery()
+    func songsHomeView_whenSearchFiltersResults_rendersCorrectly(scheme: ColorScheme) async {
+        let viewModel = makeViewModel(repository: filteredSampleRepository())
 
-        let sut = createSongsHomeSut(viewModel: viewModel, size: .medium, scheme: scheme)
-        let schemeName = scheme == .dark ? "dark" : "light"
+        await applyRemoteSearch(viewModel, query: "Daft")
+        assertRemoteSearchSettledWithoutError(viewModel)
 
-        assertSnapshot(
-            of: sut,
-            as: .image(layout: .fixed(width: 390, height: 900)),
-            named: "filtered_\(schemeName)"
+        let sut = songsHomeView(viewModel: viewModel, size: .medium, scheme: scheme)
+        assertSongsHomeSnapshot(sut, named: "filtered_\(SnapshotTestNaming.schemeName(scheme))", testName: #function)
+    }
+
+    // MARK: - Helpers
+
+    /// Empty iTunes page: home uses the view model’s local seed catalog until a non-empty search runs.
+    private func emptyRemotePageRepository() -> MockSongSearchRepository {
+        MockSongSearchRepository(page: SongSearchPage(items: [], resultCount: 0))
+    }
+
+    private func filteredSampleRepository() -> MockSongSearchRepository {
+        MockSongSearchRepository(
+            page: SongSearchPage(items: snapshotFilteredTracks, resultCount: snapshotFilteredTracks.count)
         )
     }
-}
 
-extension SongsHomeViewSnapshotTests {
-    fileprivate func createSongsHomeSut(
+    private var snapshotFilteredTracks: [SongListItem] {
+        [
+            SongListItem(id: "snap-d1", title: "Get Lucky", artist: "Daft Punk feat. Pharrell Williams"),
+            SongListItem(id: "snap-d2", title: "Instant Crush", artist: "Daft Punk feat. Julian Casablancas"),
+            SongListItem(id: "snap-d3", title: "Around the World", artist: "Daft Punk"),
+        ]
+    }
+
+    private func makeViewModel(repository: MockSongSearchRepository) -> SongsHomeViewModel {
+        SongsHomeViewModel(songSearchRepository: repository)
+    }
+
+    private func applyRemoteSearch(_ viewModel: SongsHomeViewModel, query: String) async {
+        viewModel.searchText = query
+        viewModel.applySearchQuery()
+        await waitUntil(maxTries: 400) { !viewModel.isSearchLoading }
+    }
+
+    private func assertRemoteSearchSettledWithoutError(
+        _ viewModel: SongsHomeViewModel,
+        sourceLocation: SourceLocation = #_sourceLocation
+    ) {
+        #expect(!viewModel.isSearchLoading, sourceLocation: sourceLocation)
+        #expect(viewModel.searchErrorMessage == nil, sourceLocation: sourceLocation)
+    }
+
+    private func songsHomeView(
         viewModel: SongsHomeViewModel,
         size: DynamicTypeSize,
         scheme: ColorScheme
@@ -74,16 +104,24 @@ extension SongsHomeViewSnapshotTests {
             .background(background)
     }
 
-    fileprivate func sizeName(for size: DynamicTypeSize) -> String {
-        switch size {
-        case .xSmall:
-            "xSmall"
-        case .medium:
-            "medium"
-        case .xxxLarge:
-            "xxxLarge"
-        default:
-            "unsupported"
-        }
+    private func assertSongsHomeSnapshot(
+        _ value: some View,
+        named: String,
+        testName: String,
+        fileID: StaticString = #fileID,
+        filePath: StaticString = #filePath,
+        line: UInt = #line,
+        column: UInt = #column
+    ) {
+        assertSnapshot(
+            of: value,
+            as: .image(layout: .fixed(width: 390, height: 900)),
+            named: named,
+            fileID: fileID,
+            file: filePath,
+            testName: testName,
+            line: line,
+            column: column
+        )
     }
 }

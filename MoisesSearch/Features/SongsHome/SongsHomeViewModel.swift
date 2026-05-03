@@ -17,7 +17,7 @@ final class SongsHomeViewModel {
 
     private(set) var displayedTracks: [SongListItem] = []
 
-    /// Shown while the active query is fetching (first page or pagination).
+    /// Shown while a remote search is in flight.
     var isSearchLoading: Bool = false
     /// Set when a remote search fails (empty query uses recents and clears this).
     var searchErrorMessage: String?
@@ -34,10 +34,7 @@ final class SongsHomeViewModel {
     private let songSearchRepository: any SongSearchRepository
 
     @ObservationIgnored
-    private let pageSize = 25
-
-    @ObservationIgnored
-    private var remoteTotalResultCount: Int = 0
+    private let searchResultLimit = 25
 
     @ObservationIgnored
     private var searchTask: Task<Void, Never>?
@@ -85,7 +82,6 @@ final class SongsHomeViewModel {
             displayedTracks = seedCatalog
             searchErrorMessage = nil
             isSearchLoading = false
-            remoteTotalResultCount = 0
             return
         }
 
@@ -95,21 +91,7 @@ final class SongsHomeViewModel {
 
         let query = trimmed
         searchTask = Task { @MainActor in
-            await self.performRemoteSearch(query: query, resetList: true)
-        }
-    }
-
-    /// Call when the last visible row appears to load the next iTunes page.
-    func loadMoreSearchResultsIfNeeded(currentItem item: SongListItem) {
-        guard displayedTracks.last?.id == item.id else { return }
-        let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return }
-        guard displayedTracks.count < remoteTotalResultCount else { return }
-        guard !isSearchLoading else { return }
-
-        isSearchLoading = true
-        Task { @MainActor in
-            await self.performRemoteSearch(query: trimmed, resetList: false)
+            await self.performRemoteSearch(query: query)
         }
     }
 
@@ -122,11 +104,9 @@ final class SongsHomeViewModel {
         _ = item
     }
 
-    private func performRemoteSearch(query: String, resetList: Bool) async {
-        let offset = resetList ? 0 : displayedTracks.count
-
+    private func performRemoteSearch(query: String) async {
         do {
-            let page = try await songSearchRepository.searchSongs(query: query, limit: pageSize, offset: offset)
+            let page = try await songSearchRepository.searchSongs(query: query, limit: searchResultLimit)
             try Task.checkCancellation()
             let latestQuery = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
             guard latestQuery == query else {
@@ -134,21 +114,21 @@ final class SongsHomeViewModel {
                 return
             }
 
-            if resetList {
-                displayedTracks = page.items
-            } else {
-                displayedTracks.append(contentsOf: page.items)
-            }
-            remoteTotalResultCount = page.totalResultCount
+            displayedTracks = page.items
             isSearchLoading = false
             searchErrorMessage = nil
         } catch is CancellationError {
+            let latestQuery = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard latestQuery == query else { return }
             isSearchLoading = false
         } catch {
-            isSearchLoading = false
-            if resetList {
-                displayedTracks = []
+            let latestQuery = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard latestQuery == query else {
+                isSearchLoading = false
+                return
             }
+            isSearchLoading = false
+            displayedTracks = []
             searchErrorMessage = error.localizedDescription
         }
     }

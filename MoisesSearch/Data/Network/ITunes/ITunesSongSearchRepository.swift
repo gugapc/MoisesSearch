@@ -15,15 +15,10 @@ final class ITunesSongSearchRepository: SongSearchRepository {
         self.client = client
     }
 
-    func searchSongs(query: String, limit: Int, offset: Int) async throws -> SongSearchPage {
-        let target = ITunesSearchTarget.songSearch(term: query, limit: limit, offset: offset)
+    func searchSongs(query: String, limit: Int) async throws -> SongSearchPage {
+        let target = ITunesSearchTarget.songSearch(term: query, limit: limit)
         let dto: ITunesSearchResponseDTO = try await client.request(target)
         let items = dto.results.map { $0.toSongListItem() }
-        return SongSearchPage(
-            items: items,
-            totalResultCount: dto.resultCount,
-            limit: limit,
-            offset: offset
-        )
+        return SongSearchPage(items: items, resultCount: dto.resultCount)
     }
 }

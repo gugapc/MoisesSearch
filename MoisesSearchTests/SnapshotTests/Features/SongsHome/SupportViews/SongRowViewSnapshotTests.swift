@@ -22,12 +22,12 @@ struct SongRowViewSnapshotTests {
             scheme: scheme
         )
 
-        let schemeName = scheme == .dark ? "dark" : "light"
-        let sizeName = sizeName(for: size)
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
+        let sizeName = SnapshotTestNaming.sizeName(for: size)
 
         assertSnapshot(
             of: sut,
-            as: .image(layout: .fixed(width: 390, height: 88)),
+            as: .image,
             named: "more_\(schemeName)_\(sizeName)"
         )
     }
@@ -41,11 +41,11 @@ struct SongRowViewSnapshotTests {
             scheme: scheme
         )
 
-        let schemeName = scheme == .dark ? "dark" : "light"
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
 
         assertSnapshot(
             of: sut,
-            as: .image(layout: .fixed(width: 390, height: 88)),
+            as: .image,
             named: "no-more_\(schemeName)"
         )
     }
@@ -59,11 +59,11 @@ struct SongRowViewSnapshotTests {
             scheme: scheme
         )
 
-        let schemeName = scheme == .dark ? "dark" : "light"
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
 
         assertSnapshot(
             of: sut,
-            as: .image(layout: .fixed(width: 390, height: 88)),
+            as: .image,
             named: "long-text_\(schemeName)"
         )
     }
@@ -78,11 +78,11 @@ struct SongRowViewSnapshotTests {
             layoutDirection: .rightToLeft
         )
 
-        let schemeName = scheme == .dark ? "dark" : "light"
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
 
         assertSnapshot(
             of: sut,
-            as: .image(layout: .fixed(width: 390, height: 88)),
+            as: .image,
             named: "rtl_\(schemeName)"
         )
     }
@@ -107,19 +107,7 @@ extension SongRowViewSnapshotTests {
         .environment(\.colorScheme, scheme)
         .environment(\.layoutDirection, layoutDirection)
         .background(background)
-    }
-
-    fileprivate func sizeName(for size: DynamicTypeSize) -> String {
-        switch size {
-        case .xSmall:
-            "xSmall"
-        case .medium:
-            "medium"
-        case .xxxLarge:
-            "xxxLarge"
-        default:
-            "unsupported"
-        }
+        .frame(width: 390)
     }
 }
 

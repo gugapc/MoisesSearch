@@ -21,8 +21,8 @@ struct SearchErrorViewSnapshotTests {
             scheme: scheme
         )
 
-        let schemeName = scheme == .dark ? "dark" : "light"
-        let sizeName = sizeName(for: size)
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
+        let sizeName = SnapshotTestNaming.sizeName(for: size)
 
         assertSnapshot(of: sut, as: .image, named: "\(schemeName)_\(sizeName)")
     }
@@ -36,7 +36,7 @@ struct SearchErrorViewSnapshotTests {
             layoutDirection: .rightToLeft
         )
 
-        let schemeName = scheme == .dark ? "dark" : "light"
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
 
         assertSnapshot(of: sut, as: .image, named: "rtl_\(schemeName)")
     }
@@ -56,18 +56,5 @@ extension SearchErrorViewSnapshotTests {
             .environment(\.layoutDirection, layoutDirection)
             .background(background)
             .frame(width: 390)
-    }
-
-    fileprivate func sizeName(for size: DynamicTypeSize) -> String {
-        switch size {
-        case .xSmall:
-            "xSmall"
-        case .medium:
-            "medium"
-        case .xxxLarge:
-            "xxxLarge"
-        default:
-            "unsupported"
-        }
     }
 }
