@@ -81,7 +81,7 @@ struct SongsHomeViewSnapshotTests {
     private func applyRemoteSearch(_ viewModel: SongsHomeViewModel, query: String) async {
         viewModel.searchText = query
         viewModel.applySearchQuery()
-        await waitUntil(maxTries: 400) { !viewModel.isSearchLoading }
+        await waitUntil { !viewModel.isSearchLoading }
     }
 
     private func assertRemoteSearchSettledWithoutError(

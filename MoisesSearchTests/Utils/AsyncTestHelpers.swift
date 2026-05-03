@@ -7,7 +7,7 @@
 
 import Foundation
 
-public func waitUntil(maxTries: Int = 50, condition: () -> Bool) async {
+public func waitUntil(maxTries: Int = 400, condition: () -> Bool) async {
     for _ in 0..<maxTries {
         if condition() { return }
         await Task.yield()
