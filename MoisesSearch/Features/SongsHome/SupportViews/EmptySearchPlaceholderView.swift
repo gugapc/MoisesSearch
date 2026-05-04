@@ -18,7 +18,7 @@ struct EmptySearchPlaceholderView: View {
             Image(systemName: isSearchEmpty ? "music.pages" : "magnifyingglass")
                 .font(.system(size: 40))
                 .foregroundStyle(.tertiary)
-            Text(String(localized: "No results"))
+            Text(String(localized: isSearchEmpty ? "No searches yet" : "No results"))
                 .font(.headline)
             if !isSearchEmpty {
                 Text(String(localized: "Try another search."))

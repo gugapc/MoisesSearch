@@ -28,13 +28,19 @@ final class SongsHomeViewModel {
     }
 
     @ObservationIgnored
-    private let seedCatalog: [SongListItem]
+    private let seedCatalog: [SongListItem] = []
 
     @ObservationIgnored
     private let songSearchRepository: any SongSearchRepository
 
     @ObservationIgnored
+    private let playbackHistoryRepository: any PlaybackHistoryRepository
+
+    @ObservationIgnored
     private let searchResultLimit = 25
+
+    @ObservationIgnored
+    private let recentListLimit: Int
 
     @ObservationIgnored
     private var searchTask: Task<Void, Never>?
@@ -46,15 +52,22 @@ final class SongsHomeViewModel {
     @ObservationIgnored
     private let searchDebounceNanoseconds: UInt64 = 300_000_000
 
-    init(songSearchRepository: (any SongSearchRepository)? = nil) {
+    init(
+        songSearchRepository: (any SongSearchRepository)? = nil,
+        playbackHistoryRepository: (any PlaybackHistoryRepository)? = nil,
+        recentListLimit: Int = 50
+    ) {
         self.songSearchRepository = songSearchRepository ?? ITunesSongSearchRepository(client: APIClient())
-        seedCatalog = Self.stubCatalog
+        self.playbackHistoryRepository = playbackHistoryRepository ?? EmptyPlaybackHistoryRepository()
+        self.recentListLimit = recentListLimit
         applySearchQuery()
     }
 
     /// Home list = playback queue source: replace queue and open player.
     func playTrack(at index: Int) {
         guard displayedTracks.indices.contains(index) else { return }
+        let item = displayedTracks[index]
+        try? playbackHistoryRepository.recordPlayback(item, playedAt: Date())
         playbackQueue.replace(with: displayedTracks, startAt: index)
         navigationPath.append(AppRoute.player)
     }
@@ -79,9 +92,14 @@ final class SongsHomeViewModel {
 
         let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmed.isEmpty {
-            displayedTracks = seedCatalog
             searchErrorMessage = nil
             isSearchLoading = false
+            do {
+                let recents = try playbackHistoryRepository.recentTracks(limit: recentListLimit)
+                displayedTracks = recents.isEmpty ? seedCatalog : recents
+            } catch {
+                displayedTracks = seedCatalog
+            }
             return
         }
 
@@ -132,13 +150,4 @@ final class SongsHomeViewModel {
             searchErrorMessage = error.localizedDescription
         }
     }
-
-    private static let stubCatalog: [SongListItem] = [
-        SongListItem(id: "1", title: "Purple Rain", artist: "Prince"),
-        SongListItem(id: "2", title: "Get Lucky", artist: "Daft Punk feat. Pharrell Williams"),
-        SongListItem(id: "3", title: "Instant Crush", artist: "Daft Punk feat. Julian Casablancas"),
-        SongListItem(id: "4", title: "Shape of You", artist: "Ed Sheeran"),
-        SongListItem(id: "5", title: "Happier", artist: "Ed Sheeran"),
-        SongListItem(id: "6", title: "Around the World", artist: "Daft Punk"),
-    ]
 }

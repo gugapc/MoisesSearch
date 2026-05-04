@@ -47,6 +47,15 @@ struct EmptySearchPlaceholderViewSnapshotTests {
 
         assertSnapshot(of: sut, as: .image, named: "rtl_\(schemeName)_\(queryName)")
     }
+
+    @Test(arguments: [ColorScheme.dark, ColorScheme.light])
+    func emptySearchPlaceholder_whenSearchQueryContainsOnlyWhitespace_rendersLikeEmptyState(scheme: ColorScheme) {
+        let sut = createSut(searchText: "   ", size: .medium, scheme: scheme)
+
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
+
+        assertSnapshot(of: sut, as: .image, named: "whitespace-only_\(schemeName)")
+    }
 }
 
 extension EmptySearchPlaceholderViewSnapshotTests {
