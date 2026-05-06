@@ -45,19 +45,26 @@ struct SwiftDataPlaybackHistoryRepositoryTests {
         let tZ = Date(timeIntervalSince1970: 100)
         let tXReplay = Date(timeIntervalSince1970: 150)
 
-        try sut.recordPlayback(SongListItem(id: "x", title: "Old", artist: "Y"), playedAt: tX)
+        try sut.recordPlayback(
+            SongListItem(id: "x", title: "Old", artist: "Y", albumTitle: "Old Album"),
+            playedAt: tX
+        )
         try sut.recordPlayback(SongListItem(id: "z", title: "Zed", artist: "Z"), playedAt: tZ)
 
         var recent = try sut.recentTracks(limit: 10)
         #expect(recent.map(\.id) == ["z", "x"])
 
-        try sut.recordPlayback(SongListItem(id: "x", title: "New", artist: "Y"), playedAt: tXReplay)
+        try sut.recordPlayback(
+            SongListItem(id: "x", title: "New", artist: "Y", albumTitle: "Updated Album"),
+            playedAt: tXReplay
+        )
         recent = try sut.recentTracks(limit: 10)
         #expect(recent.map(\.id) == ["x", "z"])
         #expect(recent[0].title == "New")
+        #expect(recent[0].albumTitle == "Updated Album")
     }
 
-    @Test func roundTrip_preservesOptionalURLs() throws {
+    @Test func roundTrip_preservesOptionalFields() throws {
         let container = try ModelContainer(
             for: PlayedTrackEntity.self,
             configurations: ModelConfiguration(isStoredInMemoryOnly: true)
@@ -65,17 +72,30 @@ struct SwiftDataPlaybackHistoryRepositoryTests {
         let context = ModelContext(container)
         let sut = SwiftDataPlaybackHistoryRepository(modelContext: context)
 
-        let item = SongListItem(
+        let withAlbum = SongListItem(
             id: "42",
             title: "Song",
             artist: "Artist",
+            albumTitle: "Album A",
             artworkURL: URL(string: "https://example.com/a.jpg"),
             previewURL: URL(string: "https://example.com/p.m4a")
         )
-        try sut.recordPlayback(item, playedAt: Date())
+        let withoutAlbum = SongListItem(
+            id: "43",
+            title: "Other",
+            artist: "Artist",
+            albumTitle: nil,
+            artworkURL: URL(string: "https://example.com/b.jpg"),
+            previewURL: nil
+        )
+        try sut.recordPlayback(withAlbum, playedAt: Date(timeIntervalSince1970: 1))
+        try sut.recordPlayback(withoutAlbum, playedAt: Date(timeIntervalSince1970: 2))
 
         let recent = try sut.recentTracks(limit: 5)
-        #expect(recent.count == 1)
-        #expect(recent[0] == item)
+        #expect(recent.count == 2)
+        #expect(recent[0] == withoutAlbum)
+        #expect(recent[0].albumTitle == nil)
+        #expect(recent[1] == withAlbum)
+        #expect(recent[1].albumTitle == "Album A")
     }
 }

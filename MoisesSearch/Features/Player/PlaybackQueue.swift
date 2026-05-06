@@ -19,6 +19,9 @@ final class PlaybackQueue {
         return tracks[currentIndex]
     }
 
+    var canAdvance: Bool { currentIndex < tracks.count - 1 }
+    var canRewind: Bool { currentIndex > 0 }
+
     func replace(with items: [SongListItem], startAt index: Int) {
         tracks = items
         guard !tracks.isEmpty else {
@@ -26,5 +29,24 @@ final class PlaybackQueue {
             return
         }
         currentIndex = min(max(0, index), tracks.count - 1)
+    }
+    
+    func advanceToNext() {
+        guard !tracks.isEmpty else { return }
+        if currentIndex < tracks.count - 1 {
+            currentIndex += 1
+        }
+    }
+
+    func skipToPrevious() {
+        guard !tracks.isEmpty else { return }
+        if currentIndex > 0 {
+            currentIndex -= 1
+        }
+    }
+
+    func jumpToTrack(at index: Int) {
+        guard tracks.indices.contains(index) else { return }
+        currentIndex = index
     }
 }

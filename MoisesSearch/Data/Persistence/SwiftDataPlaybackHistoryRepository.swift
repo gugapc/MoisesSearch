@@ -33,6 +33,7 @@ final class SwiftDataPlaybackHistoryRepository: PlaybackHistoryRepository {
         if let existing = try modelContext.fetch(descriptor).first {
             existing.title = item.title
             existing.artist = item.artist
+            existing.albumTitle = item.albumTitle
             existing.playedAt = playedAt
             existing.artworkURLString = item.artworkURL?.absoluteString
             existing.previewURLString = item.previewURL?.absoluteString
