@@ -25,20 +25,10 @@ struct PlayerView: View {
         horizontalSizeClass == .regular
     }
 
-    private var navigationAlbumTitle: String {
-        guard let track = viewModel.currentTrack else {
-            return String(localized: "Player")
-        }
-        if let album = track.albumTitle, !album.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            return album
-        }
-        return track.title
-    }
-
     var body: some View {
         layout
             .background(Color(.systemGroupedBackground))
-            .navigationTitle(navigationAlbumTitle)
+            .navigationTitle(viewModel.navigationAlbumTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {

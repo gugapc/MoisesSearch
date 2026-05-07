@@ -10,15 +10,15 @@ import Foundation
 @MainActor
 @Observable
 final class PlayerViewModel {
-    let playbackQueue: PlaybackQueue
+    @ObservationIgnored let playbackQueue: PlaybackQueue
 
     var isPlaying: Bool = false
     var progress: Double = 0
-    var isScrubbing: Bool = false
+    @ObservationIgnored var isScrubbing: Bool = false
 
     // TODO: replace with `trackTimeMillis` once AVPlayer streams real preview audio.
-    let placeholderDuration: Double
-    let tickInterval: Duration
+    @ObservationIgnored let placeholderDuration: Double
+    @ObservationIgnored let tickInterval: Duration
 
     init(
         playbackQueue: PlaybackQueue,
@@ -33,6 +33,16 @@ final class PlayerViewModel {
     var canAdvance: Bool { playbackQueue.canAdvance }
     var canRewind: Bool { playbackQueue.canRewind }
     var currentTrack: SongListItem? { playbackQueue.currentTrack }
+
+    var navigationAlbumTitle: String {
+        guard let track = currentTrack else {
+            return String(localized: "Player")
+        }
+        if let album = track.albumTitle, !album.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return album
+        }
+        return track.title
+    }
 
     func togglePlayPause() {
         isPlaying.toggle()
@@ -49,6 +59,7 @@ final class PlayerViewModel {
     }
 
     func jumpToTrack(at index: Int) {
+        guard index != playbackQueue.currentIndex else { return }
         playbackQueue.jumpToTrack(at: index)
         resetProgress()
     }

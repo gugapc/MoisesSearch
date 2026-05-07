@@ -37,12 +37,14 @@ struct PlayerBottomChromeView: View {
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
                     Spacer(minLength: 8)
+                    // TODO: wire repeat-mode toggle once playback supports it.
                     Button(action: {}) {
                         Image(systemName: "repeat")
                             .font(.body.weight(.medium))
                             .foregroundStyle(.secondary)
                     }
                     .buttonStyle(.plain)
+                    .disabled(true)
                     .accessibilityLabel(String(localized: "Repeat"))
                 }
             }
@@ -136,7 +138,7 @@ private struct PlayerControlsView: View {
                 .padding()
         }
         .buttonStyle(.glass)
-        .accessibilityLabel(String(localized: "Play"))
+        .accessibilityLabel(String(localized: isPlaying ? "Pause" : "Play"))
     }
 
     private var forwardButton: some View {
