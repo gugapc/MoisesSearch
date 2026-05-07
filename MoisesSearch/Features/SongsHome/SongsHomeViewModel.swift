@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+/// View model for the Songs home screen.
+///
+/// Search has two public entry points:
+/// - `scheduleDebouncedSearch()` — call from text-change observers (`.onChange(of:)`); debounces
+///   ~300 ms before firing so fast typing doesn't spam the API.
+/// - `applySearchQuery()` — call for synchronous transitions: initial load, query cleared,
+///   and `retrySearch()`. Bypasses the debounce.
 @MainActor
 @Observable
 final class SongsHomeViewModel {
@@ -28,9 +35,6 @@ final class SongsHomeViewModel {
     }
 
     @ObservationIgnored
-    private let seedCatalog: [SongListItem] = []
-
-    @ObservationIgnored
     private let songSearchRepository: any SongSearchRepository
 
     @ObservationIgnored
@@ -50,7 +54,7 @@ final class SongsHomeViewModel {
 
     /// Delay after typing stops before calling the iTunes API (empty query still applies immediately).
     @ObservationIgnored
-    private let searchDebounceNanoseconds: UInt64 = 300_000_000
+    private let searchDebounce: Duration = .milliseconds(300)
 
     init(
         songSearchRepository: (any SongSearchRepository)? = nil,
@@ -67,6 +71,7 @@ final class SongsHomeViewModel {
     func playTrack(at index: Int) {
         guard displayedTracks.indices.contains(index) else { return }
         let item = displayedTracks[index]
+        // Best-effort: a failed write only affects which tracks appear in the next session's recents.
         try? playbackHistoryRepository.recordPlayback(item, playedAt: Date())
         playbackQueue.replace(with: displayedTracks, startAt: index)
         navigationPath.append(AppRoute.player)
@@ -81,7 +86,7 @@ final class SongsHomeViewModel {
             return
         }
         debounceTask = Task { @MainActor in
-            try? await Task.sleep(nanoseconds: searchDebounceNanoseconds)
+            try? await Task.sleep(for: searchDebounce)
             guard !Task.isCancelled else { return }
             applySearchQuery()
         }
@@ -95,10 +100,9 @@ final class SongsHomeViewModel {
             searchErrorMessage = nil
             isSearchLoading = false
             do {
-                let recents = try playbackHistoryRepository.recentTracks(limit: recentListLimit)
-                displayedTracks = recents.isEmpty ? seedCatalog : recents
+                displayedTracks = try playbackHistoryRepository.recentTracks(limit: recentListLimit)
             } catch {
-                displayedTracks = seedCatalog
+                displayedTracks = []
             }
             return
         }
@@ -126,8 +130,7 @@ final class SongsHomeViewModel {
         do {
             let page = try await songSearchRepository.searchSongs(query: query, limit: searchResultLimit)
             try Task.checkCancellation()
-            let latestQuery = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-            guard latestQuery == query else {
+            guard isStillRelevant(query) else {
                 isSearchLoading = false
                 return
             }
@@ -136,12 +139,10 @@ final class SongsHomeViewModel {
             isSearchLoading = false
             searchErrorMessage = nil
         } catch is CancellationError {
-            let latestQuery = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-            guard latestQuery == query else { return }
+            guard isStillRelevant(query) else { return }
             isSearchLoading = false
         } catch {
-            let latestQuery = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-            guard latestQuery == query else {
+            guard isStillRelevant(query) else {
                 isSearchLoading = false
                 return
             }
@@ -149,5 +150,11 @@ final class SongsHomeViewModel {
             displayedTracks = []
             searchErrorMessage = error.localizedDescription
         }
+    }
+
+    /// True when `query` still matches the current trimmed `searchText` — i.e. the user
+    /// hasn't typed something new since this request was kicked off.
+    private func isStillRelevant(_ query: String) -> Bool {
+        searchText.trimmingCharacters(in: .whitespacesAndNewlines) == query
     }
 }

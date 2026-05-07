@@ -16,12 +16,12 @@ struct SongsHomeView: View {
                 searchText: $viewModel.searchText,
                 navigationTitle: String(localized: "Songs")
             ) {
-                if let message = viewModel.searchErrorMessage, viewModel.isRemoteSearchActive {
+                if let message = viewModel.searchErrorMessage {
                     SearchErrorView(
                         message: message,
                         onRetry: viewModel.retrySearch
                     )
-                } else if viewModel.isSearchLoading, viewModel.displayedTracks.isEmpty, viewModel.isRemoteSearchActive {
+                } else if viewModel.isSearchLoading, viewModel.displayedTracks.isEmpty {
                     ProgressView()
                         .frame(maxWidth: .infinity)
                         .padding(.top, 40)

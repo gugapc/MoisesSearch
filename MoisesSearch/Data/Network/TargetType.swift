@@ -18,7 +18,7 @@ protocol TargetType {
 
 extension TargetType {
     var baseURL: URL { URL(string: "https://itunes.apple.com")! }
-    var header: [String: String] { ["Content-Type": "application/json"] }
+    var header: [String: String] { [:] }
     var body: Data? { nil }
     var queryItems: [URLQueryItem]? { nil }
     var method: HTTPMethod { .get }

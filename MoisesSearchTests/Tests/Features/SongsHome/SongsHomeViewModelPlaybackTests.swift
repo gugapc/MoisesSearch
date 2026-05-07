@@ -42,7 +42,7 @@ struct SongsHomeViewModelPlaybackTests {
         #expect(vm.displayedTracks.isEmpty)
     }
 
-    @Test func playTrack_recordsPlayback() async throws {
+    @Test func playTrack_recordsPlayback() async {
         let history = MockPlaybackHistoryRepository()
         let page = SongSearchPage(
             items: [SongListItem(id: "7", title: "Play Me", artist: "Band")],
@@ -54,10 +54,7 @@ struct SongsHomeViewModelPlaybackTests {
         vm.searchText = "anything"
         vm.applySearchQuery()
 
-        for _ in 0..<100 {
-            if vm.displayedTracks.count == 1 { break }
-            try await Task.sleep(for: .milliseconds(20))
-        }
+        await waitUntil { vm.displayedTracks.count == 1 }
 
         #expect(vm.displayedTracks.count == 1)
         vm.playTrack(at: 0)

@@ -23,7 +23,7 @@ struct SearchBarField: View {
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
                 .accessibilityLabel(String(localized: "Search songs"))
-                .accessibilityHint(String(localized: "Type to search the iTunes catalog"))
+                .accessibilityHint(String(localized: "Type to search the song catalog"))
 
             if !text.isEmpty {
                 Button {

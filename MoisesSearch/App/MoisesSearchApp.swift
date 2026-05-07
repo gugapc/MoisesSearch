@@ -21,6 +21,8 @@ struct MoisesSearchApp: App {
                 configurations: ModelConfiguration(isStoredInMemoryOnly: false)
             )
         } catch {
+            // Deliberate fail-fast: a corrupt SwiftData store is unrecoverable here and warrants reinstall,
+            // not silent degradation to in-memory (which would lose recents without the user knowing).
             fatalError("Could not open SwiftData store: \(error)")
         }
         let history = SwiftDataPlaybackHistoryRepository(modelContext: ModelContext(modelContainer))

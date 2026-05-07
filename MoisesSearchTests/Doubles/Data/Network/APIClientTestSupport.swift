@@ -25,7 +25,7 @@ class URLSessionMock: URLSessionProtocol {
         if let error {
             throw error
         } else {
-            (data ?? Data(), response ?? URLResponse())
+            return (data ?? Data(), response ?? URLResponse())
         }
     }
 }

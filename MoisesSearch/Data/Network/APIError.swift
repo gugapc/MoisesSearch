@@ -12,7 +12,8 @@ enum APIError: Error, Equatable {
     case invalidRequest
     case invalidResponse(Int)
     case decodeError(Error)
-    
+    case transport(URLError)
+
     static func == (lhs: APIError, rhs: APIError) -> Bool {
         switch (lhs, rhs) {
         case (.invalidURL, .invalidURL):
@@ -25,6 +26,8 @@ enum APIError: Error, Equatable {
             let lhsError = errorL as NSError
             let rhsError = errorR as NSError
             return lhsError.domain == rhsError.domain && lhsError.code == rhsError.code
+        case let (.transport(errorL), .transport(errorR)):
+            return errorL.code == errorR.code
         default:
             return false
         }

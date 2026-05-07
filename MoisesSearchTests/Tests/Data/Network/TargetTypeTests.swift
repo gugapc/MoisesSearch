@@ -15,7 +15,7 @@ struct TargetTypeTests {
 
         #expect(sut.path == "/test/listings")
         #expect(sut.baseURL == URL(string: "https://itunes.apple.com")!)
-        #expect(sut.header == ["Content-Type": "application/json"])
+        #expect(sut.header == [:])
         #expect(sut.body == nil)
         #expect(sut.queryItems == nil)
         #expect(sut.method == .get)

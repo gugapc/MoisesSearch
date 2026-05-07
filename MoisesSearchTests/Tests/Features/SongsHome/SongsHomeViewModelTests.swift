@@ -92,11 +92,6 @@ struct SongsHomeViewModelTests {
         )
     }
 
-    /// Same list as the view model’s empty-query stub; built from a fresh SUT so it tracks app changes.
-    private func expectedStubCatalog() -> [SongListItem] {
-        makeSUT(repository: throwIfInvokedRepository()).displayedTracks
-    }
-
     // MARK: - Helpers (assertions)
 
     private func assertRemoteSearchSuccess(
@@ -120,7 +115,7 @@ struct SongsHomeViewModelTests {
     }
 
     private func assertStubCatalog(_ sut: SongsHomeViewModel, sourceLocation: SourceLocation = #_sourceLocation) {
-        #expect(sut.displayedTracks == expectedStubCatalog(), sourceLocation: sourceLocation)
+        #expect(sut.displayedTracks.isEmpty, sourceLocation: sourceLocation)
         #expect(sut.searchErrorMessage == nil, sourceLocation: sourceLocation)
         #expect(sut.isSearchLoading == false, sourceLocation: sourceLocation)
     }

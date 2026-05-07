@@ -85,6 +85,7 @@ struct SongRowView: View {
     }
     
     private var moreButton: some View {
+        // TODO: present "View album" sheet once the album route is implemented.
         Menu {
             Button(String(localized: "View album")) {
                 onMore?()
@@ -96,6 +97,7 @@ struct SongRowView: View {
                 .frame(width: 36, height: 36)
                 .contentShape(Rectangle())
         }
+        .disabled(true)
         .accessibilityLabel(String(localized: "More options"))
         .accessibilityIdentifier("song_row_more_\(item.id)")
     }

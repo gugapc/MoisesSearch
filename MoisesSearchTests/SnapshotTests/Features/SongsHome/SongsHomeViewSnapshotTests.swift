@@ -53,6 +53,20 @@ struct SongsHomeViewSnapshotTests {
         assertSongsHomeSnapshot(sut, named: "filtered_\(SnapshotTestNaming.schemeName(scheme))", testName: #function)
     }
 
+    // MARK: - Search fails
+
+    @Test(arguments: [ColorScheme.dark, ColorScheme.light])
+    func songsHomeView_whenSearchFails_rendersErrorState(scheme: ColorScheme) async {
+        let viewModel = makeViewModel(repository: failingRepository())
+
+        await applyRemoteSearch(viewModel, query: "anything")
+        #expect(!viewModel.isSearchLoading)
+        #expect(viewModel.searchErrorMessage == "Network down")
+
+        let sut = songsHomeView(viewModel: viewModel, size: .medium, scheme: scheme)
+        assertSongsHomeSnapshot(sut, named: "error_\(SnapshotTestNaming.schemeName(scheme))", testName: #function)
+    }
+
     // MARK: - Helpers
 
     /// Empty iTunes page: home uses the view model’s local seed catalog until a non-empty search runs.
@@ -63,6 +77,13 @@ struct SongsHomeViewSnapshotTests {
     private func filteredSampleRepository() -> MockSongSearchRepository {
         MockSongSearchRepository(
             page: SongSearchPage(items: snapshotFilteredTracks, resultCount: snapshotFilteredTracks.count)
+        )
+    }
+
+    private func failingRepository() -> MockSongSearchRepository {
+        MockSongSearchRepository(
+            page: SongSearchPage(items: [], resultCount: 0),
+            error: NSError(domain: "TestDomain", code: 42, userInfo: [NSLocalizedDescriptionKey: "Network down"])
         )
     }
 
