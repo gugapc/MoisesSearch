@@ -9,6 +9,7 @@ import Foundation
 import Testing
 @testable import MoisesSearch
 
+@Suite(.tags(.unit))
 struct APIErrorTests {
     @Test func equatable_whenSimpleCasesOrStatusCode_comparesCaseAndCode() {
         #expect(APIError.invalidURL == APIError.invalidURL)

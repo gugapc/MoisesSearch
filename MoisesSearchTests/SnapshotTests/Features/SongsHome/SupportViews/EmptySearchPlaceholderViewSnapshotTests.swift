@@ -10,6 +10,7 @@ import SnapshotTesting
 import Testing
 @testable import MoisesSearch
 
+@Suite(.tags(.snapshot))
 @MainActor
 struct EmptySearchPlaceholderViewSnapshotTests {
 
@@ -65,12 +66,12 @@ extension EmptySearchPlaceholderViewSnapshotTests {
         scheme: ColorScheme,
         layoutDirection: LayoutDirection = .leftToRight
     ) -> some View {
-        let background = scheme == .dark ? Color.black : Color.white
-        return EmptySearchPlaceholderView(searchText: searchText)
-            .environment(\.dynamicTypeSize, size)
-            .environment(\.colorScheme, scheme)
-            .environment(\.layoutDirection, layoutDirection)
-            .background(background)
-            .frame(width: 390)
+        EmptySearchPlaceholderView(searchText: searchText)
+            .snapshotEnvironment(
+                dynamicTypeSize: size,
+                colorScheme: scheme,
+                layoutDirection: layoutDirection,
+                width: 390
+            )
     }
 }

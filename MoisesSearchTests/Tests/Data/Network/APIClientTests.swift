@@ -9,6 +9,7 @@ import Testing
 import Foundation
 @testable import MoisesSearch
 
+@Suite(.tags(.unit))
 @MainActor
 struct APIClientTests {
     @Test func request_whenSessionFail_returnsError() async throws {

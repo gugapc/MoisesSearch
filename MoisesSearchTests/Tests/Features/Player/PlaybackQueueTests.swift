@@ -7,6 +7,7 @@ import Foundation
 import Testing
 @testable import MoisesSearch
 
+@Suite(.tags(.unit))
 @MainActor
 struct PlaybackQueueTests {
     @Test func replace_withEmptyItems_resetsIndexToZero_andCurrentTrackToNil() {

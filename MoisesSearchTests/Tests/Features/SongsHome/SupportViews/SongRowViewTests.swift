@@ -10,6 +10,7 @@ import Testing
 import ViewInspector
 @testable import MoisesSearch
 
+@Suite(.tags(.unit))
 @MainActor
 struct SongRowViewTests {
 

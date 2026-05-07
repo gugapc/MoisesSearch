@@ -8,6 +8,7 @@ import SwiftData
 import Testing
 @testable import MoisesSearch
 
+@Suite(.tags(.unit))
 @MainActor
 struct SwiftDataPlaybackHistoryRepositoryTests {
     @Test func recentTracks_returnsNewestFirst_andRespectsLimit() throws {

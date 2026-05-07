@@ -10,6 +10,7 @@ import SnapshotTesting
 import Testing
 @testable import MoisesSearch
 
+@Suite(.tags(.snapshot))
 @MainActor
 struct PlayerQueueSidebarViewSnapshotTests {
 
@@ -110,16 +111,16 @@ extension PlayerQueueSidebarViewSnapshotTests {
         scheme: ColorScheme,
         layoutDirection: LayoutDirection = .leftToRight
     ) -> some View {
-        let background = scheme == .dark ? Color.black : Color.white
-        return PlayerQueueSidebarView(
+        PlayerQueueSidebarView(
             tracks: tracks,
             currentIndex: currentIndex,
             onSelectTrack: { _ in }
         )
-        .environment(\.dynamicTypeSize, size)
-        .environment(\.colorScheme, scheme)
-        .environment(\.layoutDirection, layoutDirection)
-        .background(background)
+        .snapshotEnvironment(
+            dynamicTypeSize: size,
+            colorScheme: scheme,
+            layoutDirection: layoutDirection
+        )
     }
 }
 

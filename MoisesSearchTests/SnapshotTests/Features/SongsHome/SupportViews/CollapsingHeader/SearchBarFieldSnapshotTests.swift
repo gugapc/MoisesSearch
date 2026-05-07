@@ -10,6 +10,7 @@ import SwiftUI
 import SnapshotTesting
 @testable import MoisesSearch
 
+@Suite(.tags(.snapshot))
 @MainActor
 struct SearchBarFieldSnapshotTests {
 
@@ -58,13 +59,12 @@ extension SearchBarFieldSnapshotTests {
         scheme: ColorScheme,
         layoutDirection: LayoutDirection = .leftToRight
     ) -> some View {
-        let background = scheme == .dark ? Color.black : Color.white
-        return SearchBarField(text: .constant(text))
-            .environment(\.dynamicTypeSize, size)
-            .environment(\.colorScheme, scheme)
-            .environment(\.layoutDirection, layoutDirection)
-            .background(background)
-            .frame(width: 300)
-
+        SearchBarField(text: .constant(text))
+            .snapshotEnvironment(
+                dynamicTypeSize: size,
+                colorScheme: scheme,
+                layoutDirection: layoutDirection,
+                width: 300
+            )
     }
 }

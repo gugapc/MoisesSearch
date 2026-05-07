@@ -9,6 +9,7 @@ import Foundation
 import Testing
 @testable import MoisesSearch
 
+@Suite(.tags(.unit))
 struct ITunesSongSearchRepositoryTests {
     @Test func searchSongs_decodesResponse_andMapsToSongListItems() async throws {
         let json = """

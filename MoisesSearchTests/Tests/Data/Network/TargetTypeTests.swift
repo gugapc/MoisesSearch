@@ -9,6 +9,7 @@ import Foundation
 import Testing
 @testable import MoisesSearch
 
+@Suite(.tags(.unit))
 struct TargetTypeTests {
     @Test func testAPITarget_listings_usesProtocolDefaultValues() {
         let sut = TestAPITarget.listings

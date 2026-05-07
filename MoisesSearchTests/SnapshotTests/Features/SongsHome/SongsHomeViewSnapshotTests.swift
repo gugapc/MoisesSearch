@@ -10,6 +10,7 @@ import SnapshotTesting
 import Testing
 @testable import MoisesSearch
 
+@Suite(.tags(.snapshot))
 @MainActor
 struct SongsHomeViewSnapshotTests {
 
@@ -118,11 +119,8 @@ struct SongsHomeViewSnapshotTests {
         size: DynamicTypeSize,
         scheme: ColorScheme
     ) -> some View {
-        let background = scheme == .dark ? Color.black : Color.white
-        return SongsHomeView(viewModel: viewModel)
-            .environment(\.dynamicTypeSize, size)
-            .environment(\.colorScheme, scheme)
-            .background(background)
+        SongsHomeView(viewModel: viewModel)
+            .snapshotEnvironment(dynamicTypeSize: size, colorScheme: scheme)
     }
 
     private func assertSongsHomeSnapshot(

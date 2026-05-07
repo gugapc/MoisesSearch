@@ -10,6 +10,7 @@ import SnapshotTesting
 import Testing
 @testable import MoisesSearch
 
+@Suite(.tags(.snapshot))
 @MainActor
 struct PlayerViewSnapshotTests {
 

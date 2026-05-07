@@ -10,6 +10,7 @@ import SnapshotTesting
 import Testing
 @testable import MoisesSearch
 
+@Suite(.tags(.snapshot))
 @MainActor
 struct SongRowViewSnapshotTests {
 
@@ -96,18 +97,18 @@ extension SongRowViewSnapshotTests {
         scheme: ColorScheme,
         layoutDirection: LayoutDirection = .leftToRight
     ) -> some View {
-        let background = scheme == .dark ? Color.black : Color.white
-        return SongRowView(
+        SongRowView(
             item: item,
             showsMoreButton: showsMoreButton,
             onTapRow: {},
             onMore: {}
         )
-        .environment(\.dynamicTypeSize, size)
-        .environment(\.colorScheme, scheme)
-        .environment(\.layoutDirection, layoutDirection)
-        .background(background)
-        .frame(width: 390)
+        .snapshotEnvironment(
+            dynamicTypeSize: size,
+            colorScheme: scheme,
+            layoutDirection: layoutDirection,
+            width: 390
+        )
     }
 }
 

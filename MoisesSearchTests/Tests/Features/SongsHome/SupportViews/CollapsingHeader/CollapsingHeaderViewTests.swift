@@ -9,6 +9,7 @@ import Testing
 import Foundation
 @testable import MoisesSearch
 
+@Suite(.tags(.unit))
 struct CollapsingHeaderLayoutTests {
     @Test(arguments: [
         (scroll: CGFloat(0), expected: CGFloat(0)),

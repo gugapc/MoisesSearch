@@ -10,6 +10,7 @@ import ViewInspector
 import SwiftUI
 @testable import MoisesSearch
 
+@Suite(.tags(.unit))
 struct SearchBarFieldTests {
     @MainActor
     @Test func clearButton_whenTapped_clearsText() throws {

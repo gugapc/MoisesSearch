@@ -10,6 +10,7 @@ import SnapshotTesting
 import Testing
 @testable import MoisesSearch
 
+@Suite(.tags(.snapshot))
 @MainActor
 struct SearchErrorViewSnapshotTests {
 
@@ -49,12 +50,12 @@ extension SearchErrorViewSnapshotTests {
         scheme: ColorScheme,
         layoutDirection: LayoutDirection = .leftToRight
     ) -> some View {
-        let background = scheme == .dark ? Color.black : Color.white
-        return SearchErrorView(message: message, onRetry: {})
-            .environment(\.dynamicTypeSize, size)
-            .environment(\.colorScheme, scheme)
-            .environment(\.layoutDirection, layoutDirection)
-            .background(background)
-            .frame(width: 390)
+        SearchErrorView(message: message, onRetry: {})
+            .snapshotEnvironment(
+                dynamicTypeSize: size,
+                colorScheme: scheme,
+                layoutDirection: layoutDirection,
+                width: 390
+            )
     }
 }

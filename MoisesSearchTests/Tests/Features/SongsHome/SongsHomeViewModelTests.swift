@@ -9,6 +9,7 @@ import Foundation
 import Testing
 @testable import MoisesSearch
 
+@Suite(.tags(.unit))
 @MainActor
 struct SongsHomeViewModelTests {
 
