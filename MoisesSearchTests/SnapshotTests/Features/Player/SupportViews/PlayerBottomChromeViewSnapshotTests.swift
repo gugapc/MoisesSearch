@@ -13,6 +13,11 @@ import Testing
 @MainActor
 struct PlayerBottomChromeViewSnapshotTests {
 
+    // Note: the play/pause button uses `.buttonStyle(.glass)`, whose Liquid Glass capsule
+    // is composited by the system render server — a pipeline the snapshot rasterizer
+    // bypasses, so the capsule appears transparent here. Layout, labels, transport state,
+    // and timing remain fully validated; the glass effect is verified visually at runtime.
+
     @Test(arguments: [DynamicTypeSize.xSmall, DynamicTypeSize.medium, DynamicTypeSize.xxxLarge], [ColorScheme.dark, ColorScheme.light])
     func playerBottomChrome_whenPlaying_rendersCorrectly(size: DynamicTypeSize, scheme: ColorScheme) {
         let sut = createSut(progress: 0.5, isPlaying: true, size: size, scheme: scheme)
