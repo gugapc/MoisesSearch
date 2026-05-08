@@ -83,7 +83,9 @@ struct AlbumView: View {
     }
 
     private func loadedState(_ detail: AlbumDetail) -> some View {
-        VStack(spacing: isRegularWidth ? 32 : 20) {
+        let alignment: HorizontalAlignment = isRegularWidth ? .leading : .center
+
+        return VStack(alignment: alignment, spacing: 40) {
             hero(detail)
             tracks(detail)
         }
@@ -92,25 +94,40 @@ struct AlbumView: View {
         .accessibilityIdentifier("album_loaded")
     }
 
+    @ViewBuilder
     private func hero(_ detail: AlbumDetail) -> some View {
-        VStack(spacing: isRegularWidth ? 16 : 12) {
-            artwork(url: detail.artworkURL)
-            VStack(spacing: 4) {
-                Text(detail.title)
-                    .font(isRegularWidth ? .system(size: 36, weight: .bold) : .title2.weight(.bold))
-                    .foregroundStyle(.primary)
-                    .multilineTextAlignment(.center)
-                Text(detail.artist)
-                    .font(isRegularWidth ? .title3 : .subheadline)
-                    .foregroundStyle(.secondary)
-                    .multilineTextAlignment(.center)
+        if isRegularWidth {
+            HStack(spacing: 34) {
+                artwork(url: detail.artworkURL)
+                albumTexts(detail)
+                Spacer()
             }
+            .frame(maxWidth: .infinity)
+        } else {
+            VStack(spacing: 16) {
+                artwork(url: detail.artworkURL)
+                albumTexts(detail)
+            }
+            .frame(maxWidth: .infinity)
         }
-        .frame(maxWidth: .infinity)
+    }
+
+    private func albumTexts(_ detail: AlbumDetail) -> some View {
+        let spacing: CGFloat = isRegularWidth ? 6 : 4
+        return VStack(alignment: isRegularWidth ? .leading : .center, spacing: spacing) {
+            Text(detail.title)
+                .font(isRegularWidth ? .largeTitle.bold() : .title2.bold())
+                .foregroundStyle(.primary)
+                .multilineTextAlignment(isRegularWidth ? .leading : .center)
+
+            Text(detail.artist)
+                .font(isRegularWidth ? .title2 : .subheadline)
+                .foregroundStyle(.primary)
+                .multilineTextAlignment(isRegularWidth ? .leading : .center)
+        }
     }
 
     private func artwork(url: URL?) -> some View {
-        let side: CGFloat = isRegularWidth ? 280 : 220
         return Group {
             if let url {
                 AsyncImage(url: url) { phase in
@@ -131,7 +148,7 @@ struct AlbumView: View {
                 artworkPlaceholder(showProgress: false)
             }
         }
-        .frame(width: side, height: side)
+        .frame(width: 120, height: 120)
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
     }
 
@@ -150,7 +167,9 @@ struct AlbumView: View {
     }
 
     private func tracks(_ detail: AlbumDetail) -> some View {
-        LazyVStack(spacing: 0) {
+        let spacing: CGFloat = isRegularWidth ? 12 : 8
+
+        return LazyVStack(spacing: spacing) {
             ForEach(Array(detail.tracks.enumerated()), id: \.element.id) { index, track in
                 AlbumTrackRowView(track: track) {
                     viewModel.playTrack(at: index)

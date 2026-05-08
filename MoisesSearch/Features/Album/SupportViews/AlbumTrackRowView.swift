@@ -12,6 +12,28 @@ struct AlbumTrackRowView: View {
     let track: SongListItem
     let onTap: () -> Void
 
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    private var isRegularWidth: Bool {
+        horizontalSizeClass == .regular
+    }
+
+    private var artworkSide: CGFloat {
+        isRegularWidth ? 78 : 48
+    }
+
+    private var artworkCornerRadius: CGFloat {
+        isRegularWidth ? 6 : 9
+    }
+
+    private var titleFont: Font {
+        isRegularWidth ? .title3.weight(.semibold) : .body.weight(.semibold)
+    }
+
+    private var artistFont: Font {
+        isRegularWidth ? .body : .subheadline
+    }
+
     var body: some View {
         Button(action: onTap) {
             HStack(alignment: .center, spacing: 12) {
@@ -19,11 +41,11 @@ struct AlbumTrackRowView: View {
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(track.title)
-                        .font(.body.weight(.semibold))
+                        .font(titleFont)
                         .foregroundStyle(.primary)
                         .lineLimit(1)
                     Text(track.artist)
-                        .font(.subheadline)
+                        .font(artistFont)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
                 }
@@ -57,12 +79,12 @@ struct AlbumTrackRowView: View {
                 artworkPlaceholder(showProgress: false)
             }
         }
-        .frame(width: 48, height: 48)
-        .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+        .frame(width: artworkSide, height: artworkSide)
+        .clipShape(RoundedRectangle(cornerRadius: artworkCornerRadius, style: .continuous))
     }
 
     private func artworkPlaceholder(showProgress: Bool) -> some View {
-        RoundedRectangle(cornerRadius: 6, style: .continuous)
+        Rectangle()
             .fill(Color.primary.opacity(0.12))
             .overlay {
                 if showProgress {
