@@ -1,6 +1,6 @@
 //
-//  SearchErrorViewSnapshotTests.swift
-//  MoisesSearch
+//  RetryableErrorViewSnapshotTests.swift
+//  MoisesSearchTests
 //
 //  Created by Gustavo Pereira Cavalcanti on 02/05/26.
 //
@@ -12,10 +12,10 @@ import Testing
 
 @Suite(.tags(.snapshot))
 @MainActor
-struct SearchErrorViewSnapshotTests {
+struct RetryableErrorViewSnapshotTests {
 
     @Test(arguments: [DynamicTypeSize.xSmall, DynamicTypeSize.medium, DynamicTypeSize.xxxLarge], [ColorScheme.dark, ColorScheme.light])
-    func searchErrorView_rendersCorrectly(size: DynamicTypeSize, scheme: ColorScheme) {
+    func retryableErrorView_rendersCorrectly(size: DynamicTypeSize, scheme: ColorScheme) {
         let sut = createSut(
             message: "Something went wrong. Check your connection and try again.",
             size: size,
@@ -29,7 +29,7 @@ struct SearchErrorViewSnapshotTests {
     }
 
     @Test(arguments: [ColorScheme.dark, ColorScheme.light])
-    func searchErrorView_whenLayoutDirectionIsRightToLeft_rendersCorrectly(scheme: ColorScheme) {
+    func retryableErrorView_whenLayoutDirectionIsRightToLeft_rendersCorrectly(scheme: ColorScheme) {
         let sut = createSut(
             message: "Something went wrong. Check your connection and try again.",
             size: .medium,
@@ -43,14 +43,14 @@ struct SearchErrorViewSnapshotTests {
     }
 }
 
-extension SearchErrorViewSnapshotTests {
+extension RetryableErrorViewSnapshotTests {
     fileprivate func createSut(
         message: String,
         size: DynamicTypeSize,
         scheme: ColorScheme,
         layoutDirection: LayoutDirection = .leftToRight
     ) -> some View {
-        SearchErrorView(message: message, onRetry: {})
+        RetryableErrorView(message: message, onRetry: {})
             .snapshotEnvironment(
                 dynamicTypeSize: size,
                 colorScheme: scheme,

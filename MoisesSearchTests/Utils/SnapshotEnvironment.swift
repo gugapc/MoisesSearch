@@ -16,6 +16,7 @@ extension View {
         layoutDirection: LayoutDirection = .leftToRight,
         width: CGFloat? = nil
     ) -> some View {
+        _ = SnapshotRecording.bootstrap
         let background = colorScheme == .dark ? Color.black : Color.white
         return self
             .environment(\.dynamicTypeSize, dynamicTypeSize)

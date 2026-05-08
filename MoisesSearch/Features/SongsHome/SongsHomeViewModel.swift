@@ -70,10 +70,17 @@ final class SongsHomeViewModel {
     /// Home list = playback queue source: replace queue and open player.
     func playTrack(at index: Int) {
         guard displayedTracks.indices.contains(index) else { return }
-        let item = displayedTracks[index]
+        playTracks(displayedTracks, startAt: index)
+    }
+
+    /// Records the seed track in history, replaces the queue with `tracks`, and pushes the
+    /// player. Album taps route through here too via a closure injected at the destination.
+    func playTracks(_ tracks: [SongListItem], startAt index: Int) {
+        guard tracks.indices.contains(index) else { return }
+        let item = tracks[index]
         // Best-effort: a failed write only affects which tracks appear in the next session's recents.
         try? playbackHistoryRepository.recordPlayback(item, playedAt: Date())
-        playbackQueue.replace(with: displayedTracks, startAt: index)
+        playbackQueue.replace(with: tracks, startAt: index)
         navigationPath.append(AppRoute.player)
     }
 

@@ -18,7 +18,7 @@ struct SongsHomeView: View {
                 navigationTitle: String(localized: "Songs")
             ) {
                 if let message = viewModel.searchErrorMessage {
-                    SearchErrorView(
+                    RetryableErrorView(
                         message: message,
                         onRetry: viewModel.retrySearch
                     )
@@ -41,12 +41,20 @@ struct SongsHomeView: View {
             .navigationDestination(for: AppRoute.self) { route in
                 switch route {
                 case .player:
-                    PlayerView(playbackQueue: viewModel.playbackQueue)
+                    PlayerView(
+                        playbackQueue: viewModel.playbackQueue,
+                        onShowAlbum: { collectionId in
+                            viewModel.navigationPath.append(AppRoute.album(collectionId: collectionId))
+                        }
+                    )
                 case .album(let collectionId):
-                    Text(verbatim: "Album \(collectionId) — coming soon")
-                        .font(.headline)
-                        .foregroundStyle(.secondary)
-                        .accessibilityIdentifier("album_destination_placeholder_\(collectionId)")
+                    AlbumView(
+                        collectionId: collectionId,
+                        repository: albumRepository,
+                        onPlayTracks: { tracks, index in
+                            viewModel.playTracks(tracks, startAt: index)
+                        }
+                    )
                 }
             }
         }

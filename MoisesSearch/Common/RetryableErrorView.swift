@@ -1,5 +1,5 @@
 //
-//  SearchErrorView.swift
+//  RetryableErrorView.swift
 //  MoisesSearch
 //
 //  Created by Gustavo Pereira Cavalcanti on 30/04/26.
@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-struct SearchErrorView: View {
+/// Centered error message with a retry button. Used by any feature that fetches and can
+/// fail (Songs Home search, Album lookup, …).
+struct RetryableErrorView: View {
     let message: String
     let onRetry: () -> Void
 

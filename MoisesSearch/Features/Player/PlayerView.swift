@@ -11,14 +11,18 @@ struct PlayerView: View {
     @State private var viewModel: PlayerViewModel
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
-    init(playbackQueue: PlaybackQueue) {
+    private let onShowAlbum: ((Int) -> Void)?
+
+    init(playbackQueue: PlaybackQueue, onShowAlbum: ((Int) -> Void)? = nil) {
         _viewModel = State(initialValue: PlayerViewModel(playbackQueue: playbackQueue))
+        self.onShowAlbum = onShowAlbum
     }
 
     /// Test seam: lets snapshot/unit tests inject a pre-configured view model
     /// (e.g. fixed `progress` / `isPlaying`, slow ticker interval).
-    init(viewModel: PlayerViewModel) {
+    init(viewModel: PlayerViewModel, onShowAlbum: ((Int) -> Void)? = nil) {
         _viewModel = State(initialValue: viewModel)
+        self.onShowAlbum = onShowAlbum
     }
 
     private var showPlayQueueSidebar: Bool {
@@ -32,13 +36,21 @@ struct PlayerView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    // TODO: present More sheet (album / share / queue actions).
-                    Button(action: {}) {
+                    let collectionId = viewModel.currentTrack?.collectionId
+                    Menu {
+                        Button(String(localized: "View album")) {
+                            if let collectionId {
+                                onShowAlbum?(collectionId)
+                            }
+                        }
+                        .accessibilityIdentifier("player_view_album")
+                    } label: {
                         Image(systemName: "ellipsis")
                             .font(.body.weight(.medium))
                     }
-                    .disabled(true)
+                    .disabled(collectionId == nil)
                     .accessibilityLabel(String(localized: "More"))
+                    .accessibilityIdentifier("player_more")
                 }
             }
             .task { await viewModel.runTickerLoop() }
