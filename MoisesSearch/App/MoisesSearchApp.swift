@@ -14,6 +14,7 @@ struct MoisesSearchApp: App {
     private let albumRepository: any AlbumRepository
 
     @State private var homeViewModel: SongsHomeViewModel
+    @State private var hasFinishedSplash = false
 
     init() {
         do {
@@ -33,7 +34,16 @@ struct MoisesSearchApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SongsHomeView(viewModel: homeViewModel, albumRepository: albumRepository)
+            ZStack {
+                if hasFinishedSplash {
+                    SongsHomeView(viewModel: homeViewModel, albumRepository: albumRepository)
+                } else {
+                    SplashView {
+                        hasFinishedSplash = true
+                    }
+                }
+            }
+            .animation(.easeInOut(duration: 0.4), value: hasFinishedSplash)
         }
         .modelContainer(modelContainer)
     }
