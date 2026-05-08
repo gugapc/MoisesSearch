@@ -86,9 +86,9 @@ struct PlayerViewSnapshotTests {
 }
 
 extension PlayerViewSnapshotTests {
-    /// Builds a `PlayerViewModel` pre-loaded with the deterministic snapshot queue and
-    /// a tick interval that's effectively infinite for snapshot purposes — guarantees
-    /// `runTickerLoop` never advances `progress` while the hosting controller is alive.
+    /// Builds a `PlayerViewModel` pre-loaded with the deterministic snapshot queue. The new
+    /// AVPlayer-driven VM doesn't auto-advance `progress` (no AVPlayerItem when `previewURL`
+    /// is nil), so no tick-interval hack is needed — snapshots stay stable.
     fileprivate func makeViewModel(
         startAt index: Int,
         isPlaying: Bool,
@@ -96,9 +96,10 @@ extension PlayerViewSnapshotTests {
     ) -> PlayerViewModel {
         let queue = PlaybackQueue()
         queue.replace(with: PlayerViewSnapshotTests.snapshotQueue, startAt: index)
-        let viewModel = PlayerViewModel(playbackQueue: queue, tickInterval: .seconds(3600))
+        let viewModel = PlayerViewModel(playbackQueue: queue)
         viewModel.isPlaying = isPlaying
         viewModel.progress = progress
+        viewModel.duration = 210
         return viewModel
     }
 

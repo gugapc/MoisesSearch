@@ -53,7 +53,6 @@ struct PlayerView: View {
                     .accessibilityIdentifier("player_more")
                 }
             }
-            .task { await viewModel.runTickerLoop() }
     }
 
     @ViewBuilder
@@ -119,7 +118,7 @@ struct PlayerView: View {
             artistName: viewModel.currentTrack?.artist ?? "",
             progress: $viewModel.progress,
             isPlaying: $viewModel.isPlaying,
-            durationSeconds: viewModel.placeholderDuration,
+            durationSeconds: viewModel.duration ?? 0,
             onPrevious: { viewModel.previous() },
             onNext: { viewModel.next() },
             onScrubbingChanged: { editing in

@@ -56,37 +56,6 @@ struct PlayerViewModelTests {
         #expect(sut.progress == 0)
     }
 
-    @Test func tick_advancesProgress_whenPlaying() {
-        let sut = makeViewModel(placeholderDuration: 4, tickInterval: .seconds(1))
-        sut.isPlaying = true
-
-        sut.tick()
-        #expect(sut.progress == 0.25)
-
-        sut.tick()
-        #expect(sut.progress == 0.5)
-    }
-
-    @Test func tick_isNoOp_whenNotPlaying() {
-        let sut = makeViewModel(placeholderDuration: 4, tickInterval: .seconds(1))
-
-        sut.tick()
-
-        #expect(sut.progress == 0)
-    }
-
-    @Test func tick_clampsProgress_atOne() {
-        let sut = makeViewModel(placeholderDuration: 4, tickInterval: .seconds(1))
-        sut.isPlaying = true
-        sut.progress = 0.9
-
-        sut.tick()
-        #expect(sut.progress == 1)
-
-        sut.tick()
-        #expect(sut.progress == 1)
-    }
-
     @Test func beginScrubbing_endScrubbing_toggleFlag() {
         let sut = makeViewModel()
         #expect(sut.isScrubbing == false)
@@ -96,17 +65,6 @@ struct PlayerViewModelTests {
 
         sut.endScrubbing()
         #expect(sut.isScrubbing == false)
-    }
-
-    @Test func tick_isNoOp_whileScrubbing() {
-        let sut = makeViewModel(placeholderDuration: 4, tickInterval: .seconds(1))
-        sut.isPlaying = true
-        sut.beginScrubbing()
-        sut.progress = 0.5
-
-        sut.tick()
-
-        #expect(sut.progress == 0.5)
     }
 
     @Test func proxies_forwardToQueue() {
@@ -119,6 +77,42 @@ struct PlayerViewModelTests {
         #expect(sut.currentTrack?.id == "1")
     }
 
+    @Test func endOfTrack_advancesQueue_whenCanAdvance() {
+        let queue = makeQueue(count: 3, startAt: 0)
+        let sut = makeViewModel(queue: queue)
+        sut.progress = 0.99
+
+        sut.handleItemDidFinish()
+
+        #expect(queue.currentIndex == 1)
+        #expect(sut.progress == 0)
+    }
+
+    @Test func endOfTrack_stopsAtLastTrack() {
+        let queue = makeQueue(count: 3, startAt: 2)
+        let sut = makeViewModel(queue: queue)
+        sut.isPlaying = true
+        sut.progress = 0.99
+
+        sut.handleItemDidFinish()
+
+        #expect(queue.currentIndex == 2)
+        #expect(sut.isPlaying == false)
+        #expect(sut.progress == 0)
+    }
+
+    @Test func previewUnavailable_setsPlaybackError() {
+        let queue = PlaybackQueue()
+        queue.replace(
+            with: [SongListItem(id: "1", title: "No preview", artist: "X")],
+            startAt: 0
+        )
+
+        let sut = PlayerViewModel(playbackQueue: queue)
+
+        #expect(sut.playbackError != nil)
+    }
+
     private func makeQueue(count: Int, startAt: Int = 0) -> PlaybackQueue {
         let queue = PlaybackQueue()
         let tracks = (0..<count).map { SongListItem(id: "\($0)", title: "T\($0)", artist: "A\($0)") }
@@ -126,15 +120,7 @@ struct PlayerViewModelTests {
         return queue
     }
 
-    private func makeViewModel(
-        queue: PlaybackQueue? = nil,
-        placeholderDuration: Double = 210,
-        tickInterval: Duration = .milliseconds(500)
-    ) -> PlayerViewModel {
-        PlayerViewModel(
-            playbackQueue: queue ?? makeQueue(count: 1),
-            placeholderDuration: placeholderDuration,
-            tickInterval: tickInterval
-        )
+    private func makeViewModel(queue: PlaybackQueue? = nil) -> PlayerViewModel {
+        PlayerViewModel(playbackQueue: queue ?? makeQueue(count: 1))
     }
 }
