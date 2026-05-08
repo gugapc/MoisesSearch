@@ -13,6 +13,7 @@ enum APIError: Error, Equatable {
     case invalidResponse(Int)
     case decodeError(Error)
     case transport(URLError)
+    case missingExpectedData(String)
 
     static func == (lhs: APIError, rhs: APIError) -> Bool {
         switch (lhs, rhs) {
@@ -28,8 +29,11 @@ enum APIError: Error, Equatable {
             return lhsError.domain == rhsError.domain && lhsError.code == rhsError.code
         case let (.transport(errorL), .transport(errorR)):
             return errorL.code == errorR.code
+        case let (.missingExpectedData(descL), .missingExpectedData(descR)):
+            return descL == descR
         default:
             return false
         }
     }
 }
+    

@@ -9,4 +9,5 @@ import Foundation
 
 enum AppRoute: Hashable, Sendable {
     case player
+    case album(collectionId: Int)
 }

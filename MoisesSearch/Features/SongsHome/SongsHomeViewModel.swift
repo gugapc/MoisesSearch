@@ -122,8 +122,8 @@ final class SongsHomeViewModel {
     }
 
     func onMoreTapped(for item: SongListItem) {
-        // TODO: - Sheet "View album"
-        _ = item
+        guard let collectionId = item.collectionId else { return }
+        navigationPath.append(AppRoute.album(collectionId: collectionId))
     }
 
     private func performRemoteSearch(query: String) async {

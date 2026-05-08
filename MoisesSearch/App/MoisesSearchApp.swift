@@ -11,6 +11,7 @@ import SwiftUI
 @main
 struct MoisesSearchApp: App {
     private let modelContainer: ModelContainer
+    private let albumRepository: any AlbumRepository
 
     @State private var homeViewModel: SongsHomeViewModel
 
@@ -26,12 +27,13 @@ struct MoisesSearchApp: App {
             fatalError("Could not open SwiftData store: \(error)")
         }
         let history = SwiftDataPlaybackHistoryRepository(modelContext: ModelContext(modelContainer))
+        albumRepository = ITunesAlbumRepository(client: APIClient())
         _homeViewModel = State(wrappedValue: SongsHomeViewModel(playbackHistoryRepository: history))
     }
 
     var body: some Scene {
         WindowGroup {
-            SongsHomeView(viewModel: homeViewModel)
+            SongsHomeView(viewModel: homeViewModel, albumRepository: albumRepository)
         }
         .modelContainer(modelContainer)
     }

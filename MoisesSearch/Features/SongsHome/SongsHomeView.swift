@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SongsHomeView: View {
     @Bindable var viewModel: SongsHomeViewModel
+    let albumRepository: any AlbumRepository
 
     var body: some View {
         NavigationStack(path: $viewModel.navigationPath) {
@@ -41,6 +42,11 @@ struct SongsHomeView: View {
                 switch route {
                 case .player:
                     PlayerView(playbackQueue: viewModel.playbackQueue)
+                case .album(let collectionId):
+                    Text(verbatim: "Album \(collectionId) — coming soon")
+                        .font(.headline)
+                        .foregroundStyle(.secondary)
+                        .accessibilityIdentifier("album_destination_placeholder_\(collectionId)")
                 }
             }
         }
@@ -52,5 +58,5 @@ struct SongsHomeView: View {
 
 #Preview("Songs home") {
     @Previewable @State var viewModel = SongsHomeViewModel()
-    SongsHomeView(viewModel: viewModel)
+    SongsHomeView(viewModel: viewModel, albumRepository: EmptyAlbumRepository())
 }

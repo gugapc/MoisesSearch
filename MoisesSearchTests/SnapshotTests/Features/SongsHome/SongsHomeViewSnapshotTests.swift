@@ -119,7 +119,7 @@ struct SongsHomeViewSnapshotTests {
         size: DynamicTypeSize,
         scheme: ColorScheme
     ) -> some View {
-        SongsHomeView(viewModel: viewModel)
+        SongsHomeView(viewModel: viewModel, albumRepository: EmptyAlbumRepository())
             .snapshotEnvironment(dynamicTypeSize: size, colorScheme: scheme)
     }
 
