@@ -83,23 +83,45 @@ struct PlayerViewSnapshotTests {
             named: "regular-width_\(schemeName)"
         )
     }
+
+    // MARK: - Preview unavailable (no preview URL → error label, play disabled)
+
+    @Test(arguments: [ColorScheme.dark, ColorScheme.light])
+    func playerView_whenPreviewUnavailable_rendersErrorAndDisablesPlay(scheme: ColorScheme) {
+        let viewModel = makeViewModel(startAt: 0, isPlaying: false, progress: 0, loaded: false)
+        let sut = createSut(viewModel: viewModel, scheme: scheme)
+
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
+
+        assertSnapshot(
+            of: sut,
+            as: .image(layout: .fixed(width: 390, height: 844)),
+            named: "preview-unavailable_\(schemeName)"
+        )
+    }
 }
 
 extension PlayerViewSnapshotTests {
-    /// Builds a `PlayerViewModel` pre-loaded with the deterministic snapshot queue. The new
-    /// AVPlayer-driven VM doesn't auto-advance `progress` (no AVPlayerItem when `previewURL`
-    /// is nil), so no tick-interval hack is needed — snapshots stay stable.
+    /// Builds a `PlayerViewModel` pre-loaded with the deterministic snapshot queue.
+    /// `loaded: true` (default) pins a 210s duration and clears the auto-set `playbackError`
+    /// so the chrome renders as if the preview is ready to play. Pass `loaded: false` to
+    /// keep the synchronous "Preview unavailable" state set by `replaceCurrentTrack()` when
+    /// `previewURL` is nil.
     fileprivate func makeViewModel(
         startAt index: Int,
         isPlaying: Bool,
-        progress: Double
+        progress: Double,
+        loaded: Bool = true
     ) -> PlayerViewModel {
         let queue = PlaybackQueue()
         queue.replace(with: PlayerViewSnapshotTests.snapshotQueue, startAt: index)
         let viewModel = PlayerViewModel(playbackQueue: queue)
         viewModel.isPlaying = isPlaying
         viewModel.progress = progress
-        viewModel.duration = 210
+        if loaded {
+            viewModel.duration = 210
+            viewModel.playbackError = nil
+        }
         return viewModel
     }
 

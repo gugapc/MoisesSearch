@@ -35,7 +35,7 @@ final class PlayerViewModel {
     /// `nil` until the current item's duration has loaded
     var duration: TimeInterval?
     /// Set when the current track has no preview URL or the AVPlayerItem failed to load.
-    private(set) var playbackError: String?
+    var playbackError: String?
 
     @ObservationIgnored private let player = AVPlayer()
     @ObservationIgnored private var timeObserverToken: Any?

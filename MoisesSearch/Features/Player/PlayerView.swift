@@ -110,8 +110,6 @@ struct PlayerView: View {
     }
 
     private var chrome: some View {
-        // @Bindable is appropriate here (unlike Step 6's removal on PlaybackQueue) — the
-        // VM exposes mutable progress/isPlaying that the slider and play button bind into.
         @Bindable var viewModel = viewModel
         return PlayerBottomChromeView(
             trackTitle: viewModel.currentTrack?.title ?? "—",
@@ -125,7 +123,8 @@ struct PlayerView: View {
                 editing ? viewModel.beginScrubbing() : viewModel.endScrubbing()
             },
             hasPrevious: viewModel.canRewind,
-            hasNext: viewModel.canAdvance
+            hasNext: viewModel.canAdvance,
+            playbackErrorMessage: viewModel.playbackError
         )
     }
 

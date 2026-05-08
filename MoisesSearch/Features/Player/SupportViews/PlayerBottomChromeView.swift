@@ -13,13 +13,13 @@ struct PlayerBottomChromeView: View {
     let artistName: String
     @Binding var progress: Double
     @Binding var isPlaying: Bool
-    /// Placeholder duration until real playback / `trackTimeMillis` is wired.
     let durationSeconds: Double
     let onPrevious: () -> Void
     let onNext: () -> Void
     let onScrubbingChanged: (Bool) -> Void
     let hasPrevious: Bool
     let hasNext: Bool
+    var playbackErrorMessage: String? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -30,6 +30,14 @@ struct PlayerBottomChromeView: View {
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
+
+                if let playbackErrorMessage {
+                    Text(playbackErrorMessage)
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .accessibilityIdentifier("player_playback_error")
+                }
 
                 HStack(alignment: .center, spacing: 12) {
                     Text(artistName)
@@ -69,7 +77,8 @@ struct PlayerBottomChromeView: View {
                 onPrevious: onPrevious,
                 onNext: onNext,
                 hasPrevious: hasPrevious,
-                hasNext: hasNext
+                hasNext: hasNext,
+                playEnabled: playbackErrorMessage == nil
             )
             .padding(.top, 12)
         }
@@ -77,7 +86,7 @@ struct PlayerBottomChromeView: View {
         .padding(.top, 16)
         .padding(.bottom, 8)
     }
-    
+
     private var elapsedSeconds: Int {
         Int((progress * durationSeconds).rounded(.down))
     }
@@ -101,6 +110,7 @@ private struct PlayerControlsView: View {
     let onNext: () -> Void
     let hasPrevious: Bool
     let hasNext: Bool
+    let playEnabled: Bool
 
     var body: some View {
         HStack(spacing: 0) {
@@ -138,6 +148,7 @@ private struct PlayerControlsView: View {
                 .padding()
         }
         .buttonStyle(.glass)
+        .disabled(!playEnabled)
         .accessibilityLabel(String(localized: isPlaying ? "Pause" : "Play"))
     }
 
