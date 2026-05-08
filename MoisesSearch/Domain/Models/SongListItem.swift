@@ -13,6 +13,7 @@ struct SongListItem: Identifiable, Hashable, Sendable {
     let artist: String
     /// Album name when known (e.g. iTunes `collectionName`); used for player navigation title.
     let albumTitle: String?
+    let collectionId: Int?
     let artworkURL: URL?
     let previewURL: URL?
 
@@ -21,6 +22,7 @@ struct SongListItem: Identifiable, Hashable, Sendable {
         title: String,
         artist: String,
         albumTitle: String? = nil,
+        collectionId: Int? = nil,
         artworkURL: URL? = nil,
         previewURL: URL? = nil
     ) {
@@ -28,6 +30,7 @@ struct SongListItem: Identifiable, Hashable, Sendable {
         self.title = title
         self.artist = artist
         self.albumTitle = albumTitle
+        self.collectionId = collectionId
         self.artworkURL = artworkURL
         self.previewURL = previewURL
     }

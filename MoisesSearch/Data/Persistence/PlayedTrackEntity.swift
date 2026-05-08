@@ -14,6 +14,7 @@ final class PlayedTrackEntity {
     var title: String
     var artist: String
     var albumTitle: String?
+    var collectionId: Int?
     var playedAt: Date
     var artworkURLString: String?
     var previewURLString: String?
@@ -23,6 +24,7 @@ final class PlayedTrackEntity {
         title: String,
         artist: String,
         albumTitle: String? = nil,
+        collectionId: Int? = nil,
         playedAt: Date,
         artworkURLString: String? = nil,
         previewURLString: String? = nil
@@ -31,6 +33,7 @@ final class PlayedTrackEntity {
         self.title = title
         self.artist = artist
         self.albumTitle = albumTitle
+        self.collectionId = collectionId
         self.playedAt = playedAt
         self.artworkURLString = artworkURLString
         self.previewURLString = previewURLString
@@ -42,6 +45,7 @@ final class PlayedTrackEntity {
             title: item.title,
             artist: item.artist,
             albumTitle: item.albumTitle,
+            collectionId: item.collectionId,
             playedAt: playedAt,
             artworkURLString: item.artworkURL?.absoluteString,
             previewURLString: item.previewURL?.absoluteString
@@ -54,6 +58,7 @@ final class PlayedTrackEntity {
             title: title,
             artist: artist,
             albumTitle: albumTitle,
+            collectionId: collectionId,
             artworkURL: artworkURLString.flatMap(URL.init(string:)),
             previewURL: previewURLString.flatMap(URL.init(string:))
         )

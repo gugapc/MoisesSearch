@@ -15,6 +15,7 @@ struct ITunesSongResultDTO: Decodable, Sendable {
     let trackName: String
     let artistName: String
     let collectionName: String?
+    let collectionId: Int?
     let artworkUrl60: String?
     let artworkUrl100: String?
     let previewUrl: String?
@@ -28,6 +29,7 @@ struct ITunesSongResultDTO: Decodable, Sendable {
             title: trackName,
             artist: artistName,
             albumTitle: collectionName,
+            collectionId: collectionId,
             artworkURL: artworkURL,
             previewURL: previewURL
         )

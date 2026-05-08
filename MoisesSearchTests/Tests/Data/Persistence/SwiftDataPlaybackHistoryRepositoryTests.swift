@@ -47,7 +47,7 @@ struct SwiftDataPlaybackHistoryRepositoryTests {
         let tXReplay = Date(timeIntervalSince1970: 150)
 
         try sut.recordPlayback(
-            SongListItem(id: "x", title: "Old", artist: "Y", albumTitle: "Old Album"),
+            SongListItem(id: "x", title: "Old", artist: "Y", albumTitle: "Old Album", collectionId: 11),
             playedAt: tX
         )
         try sut.recordPlayback(SongListItem(id: "z", title: "Zed", artist: "Z"), playedAt: tZ)
@@ -56,13 +56,14 @@ struct SwiftDataPlaybackHistoryRepositoryTests {
         #expect(recent.map(\.id) == ["z", "x"])
 
         try sut.recordPlayback(
-            SongListItem(id: "x", title: "New", artist: "Y", albumTitle: "Updated Album"),
+            SongListItem(id: "x", title: "New", artist: "Y", albumTitle: "Updated Album", collectionId: 22),
             playedAt: tXReplay
         )
         recent = try sut.recentTracks(limit: 10)
         #expect(recent.map(\.id) == ["x", "z"])
         #expect(recent[0].title == "New")
         #expect(recent[0].albumTitle == "Updated Album")
+        #expect(recent[0].collectionId == 22)
     }
 
     @Test func roundTrip_preservesOptionalFields() throws {
@@ -78,6 +79,7 @@ struct SwiftDataPlaybackHistoryRepositoryTests {
             title: "Song",
             artist: "Artist",
             albumTitle: "Album A",
+            collectionId: 999,
             artworkURL: URL(string: "https://example.com/a.jpg"),
             previewURL: URL(string: "https://example.com/p.m4a")
         )
@@ -86,6 +88,7 @@ struct SwiftDataPlaybackHistoryRepositoryTests {
             title: "Other",
             artist: "Artist",
             albumTitle: nil,
+            collectionId: nil,
             artworkURL: URL(string: "https://example.com/b.jpg"),
             previewURL: nil
         )
@@ -96,7 +99,9 @@ struct SwiftDataPlaybackHistoryRepositoryTests {
         #expect(recent.count == 2)
         #expect(recent[0] == withoutAlbum)
         #expect(recent[0].albumTitle == nil)
+        #expect(recent[0].collectionId == nil)
         #expect(recent[1] == withAlbum)
         #expect(recent[1].albumTitle == "Album A")
+        #expect(recent[1].collectionId == 999)
     }
 }

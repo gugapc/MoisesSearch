@@ -34,6 +34,7 @@ final class SwiftDataPlaybackHistoryRepository: PlaybackHistoryRepository {
             existing.title = item.title
             existing.artist = item.artist
             existing.albumTitle = item.albumTitle
+            existing.collectionId = item.collectionId
             existing.playedAt = playedAt
             existing.artworkURLString = item.artworkURL?.absoluteString
             existing.previewURLString = item.previewURL?.absoluteString

@@ -21,6 +21,7 @@ struct ITunesSongSearchRepositoryTests {
               "trackName": "Test Song",
               "artistName": "Test Artist",
               "collectionName": "Test Album",
+              "collectionId": 555,
               "artworkUrl100": "https://example.com/artwork-100.jpg",
               "previewUrl": "https://example.com/preview-100.m4a"
             },
@@ -56,12 +57,15 @@ struct ITunesSongSearchRepositoryTests {
                     title: "Test Song",
                     artist: "Test Artist",
                     albumTitle: "Test Album",
+                    collectionId: 555,
                     artworkURL: URL(string: "https://example.com/artwork-100.jpg"),
                     previewURL: URL(string: "https://example.com/preview-100.m4a")
                 )
         )
+        #expect(page.items[0].collectionId == 555)
         #expect(page.items[1] == SongListItem(id: "200", title: "Another", artist: "Band"))
         #expect(page.items[1].albumTitle == nil)
+        #expect(page.items[1].collectionId == nil)
     }
 
     @Test func searchSongs_mapsArtworkUrl60_whenArtworkUrl100Missing() async throws {

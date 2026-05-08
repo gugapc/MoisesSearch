@@ -130,7 +130,7 @@ struct PlayerView: View {
 }
 
 #Preview("Player") {
-    var queue = PlaybackQueue()
+    let queue = PlaybackQueue()
     queue.replace(
         with: [
             SongListItem(

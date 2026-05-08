@@ -14,10 +14,7 @@ import ViewInspector
 @MainActor
 struct SongRowViewTests {
 
-    @Test func moreMenu_isDisabled_pendingAlbumRoute() throws {
-        // The More menu is intentionally disabled until the album route is implemented;
-        // see `SongRowView.moreButton` TODO. When that ships, drop `.disabled(true)` and
-        // re-add a tap-invokes-onMore assertion.
+    @Test func moreMenu_isDisabled_whenCollectionIdMissing() throws {
         let sut = SongRowView(
             item: SongListItem(id: "row-menu", title: "Title", artist: "Artist"),
             onTapRow: {},
@@ -26,5 +23,21 @@ struct SongRowViewTests {
 
         let menu = try sut.inspect().find(ViewType.Menu.self)
         #expect(try menu.isDisabled())
+    }
+
+    @Test func moreMenu_isEnabled_whenCollectionIdPresent() throws {
+        let sut = SongRowView(
+            item: SongListItem(
+                id: "row-menu",
+                title: "Title",
+                artist: "Artist",
+                collectionId: 123
+            ),
+            onTapRow: {},
+            onMore: {}
+        )
+
+        let menu = try sut.inspect().find(ViewType.Menu.self)
+        #expect(try menu.isDisabled() == false)
     }
 }
