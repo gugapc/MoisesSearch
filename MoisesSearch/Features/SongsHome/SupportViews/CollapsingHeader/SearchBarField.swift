@@ -13,7 +13,7 @@ struct SearchBarField: View {
     var opacity: CGFloat = 1
 
     var body: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: 8) {
             Image(systemName: "magnifyingglass")
                 .foregroundStyle(.secondary)
                 .accessibilityHidden(true)

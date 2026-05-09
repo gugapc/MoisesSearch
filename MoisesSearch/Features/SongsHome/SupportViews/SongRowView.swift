@@ -12,11 +12,33 @@ struct SongRowView: View {
     var showsMoreButton: Bool = true
     var onTapRow: () -> Void
     var onMore: (() -> Void)?
+    
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    
+    private var isRegularSize: Bool {
+        horizontalSizeClass == .regular
+    }
+
+    private var iconSpacing: CGFloat {
+        isRegularSize ? 24 : 16
+    }
+
+    private var songInfoSpacing: CGFloat {
+        isRegularSize ? 6 : 4
+    }
+    
+    private var iconSize: CGFloat {
+        isRegularSize ? 78 : 52
+    }
+
+    private var iconCornerRadius: CGFloat {
+        isRegularSize ? 12 : 8
+    }
 
     var body: some View {
-        HStack(alignment: .center, spacing: 12) {
+        HStack(alignment: .center, spacing: 8) {
             Button(action: onTapRow) {
-                HStack(alignment: .center, spacing: 12) {
+                HStack(alignment: .center, spacing: iconSpacing) {
                     songIcon
 
                     songInfo
@@ -29,7 +51,7 @@ struct SongRowView: View {
                 moreButton
             }
         }
-        .padding(.vertical, 6)
+        .padding(.vertical, 8)
     }
     
     private var songIcon: some View {
@@ -53,12 +75,12 @@ struct SongRowView: View {
                 artworkPlaceholder(showProgress: false)
             }
         }
-        .frame(width: 48, height: 48)
-        .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+        .frame(width: iconSize, height: iconSize)
+        .clipShape(RoundedRectangle(cornerRadius: iconCornerRadius, style: .continuous))
     }
 
     private func artworkPlaceholder(showProgress: Bool) -> some View {
-        RoundedRectangle(cornerRadius: 6, style: .continuous)
+        Rectangle()
             .fill(Color.primary.opacity(0.12))
             .overlay {
                 if showProgress {
@@ -71,13 +93,13 @@ struct SongRowView: View {
     }
     
     private var songInfo: some View {
-        VStack(alignment: .leading, spacing: 2) {
+        VStack(alignment: .leading, spacing: songInfoSpacing) {
             Text(item.title)
-                .font(.body.weight(.semibold))
+                .font(isRegularSize ? .title3.weight(.semibold) : .body.weight(.semibold))
                 .foregroundStyle(.primary)
                 .lineLimit(1)
             Text(item.artist)
-                .font(.subheadline)
+                .font(isRegularSize ? .body : .subheadline)
                 .foregroundStyle(.secondary)
                 .lineLimit(1)
         }

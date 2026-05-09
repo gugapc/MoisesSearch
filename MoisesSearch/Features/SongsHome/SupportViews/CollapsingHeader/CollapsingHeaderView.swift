@@ -45,12 +45,13 @@ struct CollapsingHeaderView<Content: View>: View {
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
-                LazyVStack(alignment: .leading, spacing: 12) {
+                LazyVStack(alignment: .leading, spacing: 0) {
                     ScrollDistanceTracker(scrollDistance: $scrollDistance)
                         .id(scrollTopID)
 
                     SearchBarField(text: $searchText, placeholder: searchPlaceholder, opacity: inlineSearchOpacity)
                         .animation(.easeInOut(duration: 0.2), value: scrollDistance)
+                        .padding(.bottom, 8)
 
                     content()
                 }
