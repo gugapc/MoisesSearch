@@ -10,20 +10,20 @@ import SwiftUI
 struct SplashView: View {
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
-    private var isRegularSize: Bool {
+    private var isRegularWidth: Bool {
         horizontalSizeClass == .regular
     }
     
     private var startPoint: UnitPoint {
-        isRegularSize ? .topLeading : .topTrailing
+        isRegularWidth ? .topLeading : .topTrailing
     }
 
     private var endPoint: UnitPoint {
-        isRegularSize ? .bottomTrailing : .bottomLeading
+        isRegularWidth ? .bottomTrailing : .bottomLeading
     }
     
     private var iconSize: CGFloat {
-        isRegularSize ? 256 : 100
+        isRegularWidth ? 256 : 100
     }
 
     let onFinish: () -> Void

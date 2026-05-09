@@ -15,24 +15,24 @@ struct SongRowView: View {
     
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
-    private var isRegularSize: Bool {
+    private var isRegularWidth: Bool {
         horizontalSizeClass == .regular
     }
 
     private var iconSpacing: CGFloat {
-        isRegularSize ? 24 : 16
+        isRegularWidth ? 24 : 16
     }
 
     private var songInfoSpacing: CGFloat {
-        isRegularSize ? 6 : 4
+        isRegularWidth ? 6 : 4
     }
     
     private var iconSize: CGFloat {
-        isRegularSize ? 78 : 52
+        isRegularWidth ? 78 : 52
     }
 
     private var iconCornerRadius: CGFloat {
-        isRegularSize ? 12 : 8
+        isRegularWidth ? 12 : 8
     }
 
     var body: some View {
@@ -95,11 +95,11 @@ struct SongRowView: View {
     private var songInfo: some View {
         VStack(alignment: .leading, spacing: songInfoSpacing) {
             Text(item.title)
-                .font(isRegularSize ? .title3.weight(.semibold) : .body.weight(.semibold))
+                .font(isRegularWidth ? .title3.weight(.semibold) : .body.weight(.semibold))
                 .foregroundStyle(.primary)
                 .lineLimit(1)
             Text(item.artist)
-                .font(isRegularSize ? .body : .subheadline)
+                .font(isRegularWidth ? .body : .subheadline)
                 .foregroundStyle(.secondary)
                 .lineLimit(1)
         }
