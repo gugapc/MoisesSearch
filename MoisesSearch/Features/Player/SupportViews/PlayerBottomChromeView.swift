@@ -13,6 +13,7 @@ struct PlayerBottomChromeView: View {
     let artistName: String
     @Binding var progress: Double
     @Binding var isPlaying: Bool
+    @Binding var isRepeatEnabled: Bool
     let durationSeconds: Double
     let onPrevious: () -> Void
     let onNext: () -> Void
@@ -45,15 +46,17 @@ struct PlayerBottomChromeView: View {
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
                     Spacer(minLength: 8)
-                    // TODO: wire repeat-mode toggle once playback supports it.
-                    Button(action: {}) {
+                    Button {
+                        isRepeatEnabled.toggle()
+                    } label: {
                         Image(systemName: "repeat")
                             .font(.body.weight(.medium))
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(isRepeatEnabled ? Color.accentColor : .secondary)
                     }
                     .buttonStyle(.plain)
-                    .disabled(true)
                     .accessibilityLabel(String(localized: "Repeat"))
+                    .accessibilityValue(Text(isRepeatEnabled ? String(localized: "On") : String(localized: "Off")))
+                    .accessibilityIdentifier("player_repeat_toggle")
                 }
             }
             .padding(.bottom, 14)

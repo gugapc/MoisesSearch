@@ -116,6 +116,7 @@ struct PlayerView: View {
             artistName: viewModel.currentTrack?.artist ?? "",
             progress: $viewModel.progress,
             isPlaying: $viewModel.isPlaying,
+            isRepeatEnabled: $viewModel.isRepeatEnabled,
             durationSeconds: viewModel.duration ?? 0,
             onPrevious: { viewModel.previous() },
             onNext: { viewModel.next() },

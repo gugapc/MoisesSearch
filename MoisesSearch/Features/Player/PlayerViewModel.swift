@@ -37,6 +37,10 @@ final class PlayerViewModel {
     /// Set when the current track has no preview URL or the AVPlayerItem failed to load.
     var playbackError: String?
 
+    /// When `true`, end-of-track restarts the current track instead of advancing the queue.
+    /// Toggle-only (no mode enum) — matches the chrome's single repeat button.
+    var isRepeatEnabled: Bool = false
+
     @ObservationIgnored private let player = AVPlayer()
     @ObservationIgnored private var timeObserverToken: Any?
     @ObservationIgnored private var endObserverToken: NSObjectProtocol?
@@ -109,6 +113,16 @@ final class PlayerViewModel {
     }
 
     func handleItemDidFinish() {
+        if isRepeatEnabled {
+            currentTime = 0
+            progress = 0
+            player.seek(to: .zero)
+            // The player paused itself when the item ended; restart only if the user was playing.
+            if isPlaying {
+                player.play()
+            }
+            return
+        }
         if playbackQueue.canAdvance {
             next()
         } else {

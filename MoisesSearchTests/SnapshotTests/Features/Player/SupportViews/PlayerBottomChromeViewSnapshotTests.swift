@@ -96,12 +96,22 @@ struct PlayerBottomChromeViewSnapshotTests {
 
         assertSnapshot(of: sut, as: .image, named: "rtl_\(schemeName)")
     }
+    
+    @Test(arguments: [ColorScheme.dark, ColorScheme.light])
+    func playerBottomChrome_whenRepeatIsEnabled_rendersCorrectly(scheme: ColorScheme) {
+        let sut = createSut(progress: 0, isPlaying: false, isRepeatEnabled: true, size: .medium, scheme: scheme)
+
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
+
+        assertSnapshot(of: sut, as: .image, named: "repeat-enabled_\(schemeName)")
+    }
 }
 
 extension PlayerBottomChromeViewSnapshotTests {
     fileprivate func createSut(
         progress: Double,
         isPlaying: Bool,
+        isRepeatEnabled: Bool = false,
         size: DynamicTypeSize,
         scheme: ColorScheme,
         layoutDirection: LayoutDirection = .leftToRight,
@@ -111,6 +121,7 @@ extension PlayerBottomChromeViewSnapshotTests {
         BottomChromeHost(
             progress: progress,
             isPlaying: isPlaying,
+            isRepeatEnabled: isRepeatEnabled,
             hasPrevious: hasPrevious,
             hasNext: hasNext
         )
@@ -128,6 +139,7 @@ extension PlayerBottomChromeViewSnapshotTests {
 private struct BottomChromeHost: View {
     @State var progress: Double
     @State var isPlaying: Bool
+    @State var isRepeatEnabled: Bool
     let hasPrevious: Bool
     let hasNext: Bool
 
@@ -137,6 +149,7 @@ private struct BottomChromeHost: View {
             artistName: "Daft Punk feat. Julian Casablancas",
             progress: $progress,
             isPlaying: $isPlaying,
+            isRepeatEnabled: $isRepeatEnabled,
             durationSeconds: 220,
             onPrevious: {},
             onNext: {},

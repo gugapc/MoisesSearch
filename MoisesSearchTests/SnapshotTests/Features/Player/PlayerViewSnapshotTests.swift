@@ -99,6 +99,23 @@ struct PlayerViewSnapshotTests {
             named: "preview-unavailable_\(schemeName)"
         )
     }
+
+    // MARK: - Repeat enabled (icon tinted with accent color)
+
+    @Test(arguments: [ColorScheme.dark, ColorScheme.light])
+    func playerView_whenRepeatEnabled_rendersHighlightedRepeat(scheme: ColorScheme) {
+        let viewModel = makeViewModel(startAt: 0, isPlaying: false, progress: 0)
+        viewModel.isRepeatEnabled = true
+        let sut = createSut(viewModel: viewModel, scheme: scheme)
+
+        let schemeName = SnapshotTestNaming.schemeName(scheme)
+
+        assertSnapshot(
+            of: sut,
+            as: .image(layout: .fixed(width: 390, height: 844)),
+            named: "repeat-enabled_\(schemeName)"
+        )
+    }
 }
 
 extension PlayerViewSnapshotTests {
